@@ -5,7 +5,7 @@ databases:
   # PostgreSQL Database with pgvector extension
   - name: patent-db
     databaseName: patentdb
-    user: postgres
+    user: patentuser
     plan: free # Change to 'starter' or higher for production
     postgresMajorVersion: 15
     
