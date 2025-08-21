@@ -17,7 +17,7 @@ services:
     buildCommand: |
       cd patent-platform && \
       npm install -g pnpm@8.14.0 && \
-      pnpm install --frozen-lockfile && \
+      pnpm install && \
       cd apps/api && \
       pnpm run prisma:generate && \
       cd ../.. && \
@@ -48,7 +48,7 @@ services:
     buildCommand: |
       cd patent-platform && \
       npm install -g pnpm@8.14.0 && \
-      pnpm install --frozen-lockfile && \
+      pnpm install && \
       pnpm run build --filter=patent-platform-web
     startCommand: |
       cd patent-platform/apps/web && \
