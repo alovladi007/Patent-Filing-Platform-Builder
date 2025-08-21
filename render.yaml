@@ -1,36 +1,26 @@
 # Render Blueprint Configuration for Patent Filing Platform
-# This file defines all services needed to deploy the platform on Render
-# Updated: Remove frozen-lockfile flag for pnpm install
+# Simplified version using npm instead of pnpm
+# Last updated: Fix deployment issues
 
 databases:
-  # PostgreSQL Database with pgvector extension
+  # PostgreSQL Database
   - name: patent-db
     databaseName: patentdb
     user: patentuser
-    plan: free # Change to 'starter' or higher for production
-    postgresMajorVersion: 15
-    
-services:
-  # Redis for caching and job queues
-  - type: redis
-    name: patent-redis
-    plan: free # Change to 'starter' or higher for production
-    ipAllowList: [] # Allow connections from all Render services
-    maxmemoryPolicy: allkeys-lru
+    plan: free
 
+services:
   # Backend API Service (NestJS)
   - type: web
     name: patent-api
     runtime: node
-    plan: free # Change to 'starter' or higher for production
+    plan: free
     buildCommand: |
       cd patent-platform && \
-      npm install -g pnpm@8.14.0 && \
-      pnpm install --no-frozen-lockfile && \
+      npm install && \
       cd apps/api && \
-      pnpm run prisma:generate && \
-      cd ../.. && \
-      pnpm run build --filter=@apps/api
+      npx prisma generate --schema=../../infra/prisma/schema.prisma && \
+      npm run build
     startCommand: |
       cd patent-platform/apps/api && \
       npx prisma migrate deploy --schema=../../infra/prisma/schema.prisma && \
@@ -44,65 +34,23 @@ services:
         fromDatabase:
           name: patent-db
           property: connectionString
-      - key: REDIS_URL
-        fromService:
-          type: redis
-          name: patent-redis
-          property: connectionString
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_REFRESH_SECRET
         generateValue: true
-      - key: JWT_ACCESS_EXPIRATION
-        value: 15m
-      - key: JWT_REFRESH_EXPIRATION
-        value: 7d
       - key: CORS_ORIGIN
-        fromService:
-          type: web
-          name: patent-web
-          property: host
-      - key: STRIPE_SECRET_KEY
-        sync: false # Set this in Render dashboard
-      - key: STRIPE_WEBHOOK_SECRET
-        sync: false # Set this in Render dashboard
-      - key: AWS_ACCESS_KEY_ID
-        sync: false # Set this in Render dashboard
-      - key: AWS_SECRET_ACCESS_KEY
-        sync: false # Set this in Render dashboard
-      - key: AWS_REGION
-        value: us-east-1
-      - key: AWS_S3_BUCKET
-        value: patent-documents
-      - key: OPENAI_API_KEY
-        sync: false # Set this in Render dashboard
-      - key: ANTHROPIC_API_KEY
-        sync: false # Set this in Render dashboard
-      - key: SMTP_HOST
-        sync: false # Set this in Render dashboard
-      - key: SMTP_PORT
-        value: 587
-      - key: SMTP_USER
-        sync: false # Set this in Render dashboard
-      - key: SMTP_PASS
-        sync: false # Set this in Render dashboard
-      - key: SMTP_FROM
-        value: noreply@patent-platform.com
-      - key: RATE_LIMIT_TTL
-        value: 60
-      - key: RATE_LIMIT_MAX
-        value: 100
+        value: "*"
 
   # Frontend Web Service (Next.js)
   - type: web
     name: patent-web
     runtime: node
-    plan: free # Change to 'starter' or higher for production
+    plan: free
     buildCommand: |
       cd patent-platform && \
-      npm install -g pnpm@8.14.0 && \
-      pnpm install --no-frozen-lockfile && \
-      pnpm run build --filter=patent-platform-web
+      npm install && \
+      cd apps/web && \
+      npm run build
     startCommand: |
       cd patent-platform/apps/web && \
       npm run start
@@ -114,10 +62,4 @@ services:
           type: web
           name: patent-api
           property: host
-      - key: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-        sync: false # Set this in Render dashboard
-      - key: NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
-        sync: false # Set this in Render dashboard (optional)
-      - key: NEXT_PUBLIC_SENTRY_DSN
-        sync: false # Set this in Render dashboard (optional)
 
