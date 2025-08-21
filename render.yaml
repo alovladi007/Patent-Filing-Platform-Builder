@@ -1,5 +1,6 @@
 # Render Blueprint Configuration for Patent Filing Platform
 # This file defines all services needed to deploy the platform on Render
+# Updated: Remove frozen-lockfile flag for pnpm install
 
 databases:
   # PostgreSQL Database with pgvector extension
@@ -25,7 +26,7 @@ services:
     buildCommand: |
       cd patent-platform && \
       npm install -g pnpm@8.14.0 && \
-      pnpm install && \
+      pnpm install --no-frozen-lockfile && \
       cd apps/api && \
       pnpm run prisma:generate && \
       cd ../.. && \
@@ -100,7 +101,7 @@ services:
     buildCommand: |
       cd patent-platform && \
       npm install -g pnpm@8.14.0 && \
-      pnpm install && \
+      pnpm install --no-frozen-lockfile && \
       pnpm run build --filter=patent-platform-web
     startCommand: |
       cd patent-platform/apps/web && \
