@@ -14,11 +14,11 @@ export default function HomePage() {
         </div>
 
         <h1 style={{ fontSize: '48px', marginBottom: '20px', color: '#1e293b' }}>
-          🚀 Patent Filing Platform
+          🚀 LUMA IP
         </h1>
         
         <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '40px' }}>
-          Automated patent application system with AI-powered drafting assistance
+          Legal Utility for Machine Assisted IP Analysis
         </p>
 
         <div style={{ 
@@ -201,7 +201,7 @@ export default function HomePage() {
           borderTop: '1px solid #e2e8f0',
           color: '#64748b' 
         }}>
-          <p>© 2024 Patent Filing Platform - Educational and Development Use Only</p>
+          <p>© 2024 LUMA IP - Educational and Development Use Only</p>
           <p style={{ marginTop: '10px' }}>
             <a href="https://github.com/alovladi007/Patent-Filing-Platform-Builder" 
                style={{ color: '#667eea', textDecoration: 'none' }}>

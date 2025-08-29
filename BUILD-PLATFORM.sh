@@ -125,9 +125,9 @@ coverage/
 ENDFILE
 
 cat > README.md << 'ENDFILE'
-# Patent Filing Platform
+# LUMA IP
 
-A production-ready automated patent filing platform with AI-powered drafting assistance.
+Legal Utility for Machine Assisted IP Analysis - A production-ready platform with AI-powered intellectual property analysis and patent drafting assistance.
 
 ## 🚀 Quick Start
 
@@ -299,8 +299,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Patent Filing Platform',
-  description: 'Automated patent filing with AI assistance',
+  title: 'LUMA IP',
+  description: 'Legal Utility for Machine Assisted IP Analysis',
 };
 
 export default function RootLayout({
@@ -333,7 +333,7 @@ export default function HomePage() {
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-gray-900">Patent Filing Platform</h1>
+            <h1 className="text-3xl font-bold text-gray-900">LUMA IP</h1>
             <nav className="space-x-4">
               <Link href="/auth/login" className="text-blue-600 hover:text-blue-800">Login</Link>
               <Link href="/auth/register" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
@@ -347,7 +347,7 @@ export default function HomePage() {
       <main className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Automated Patent Filing with AI
+            Legal Utility for Machine Assisted IP Analysis
           </h2>
           <p className="text-xl text-gray-600">
             Streamline your patent application process with intelligent drafting assistance
@@ -590,7 +590,7 @@ async function bootstrap() {
   
   const config = new DocumentBuilder()
     .setTitle('Patent Platform API')
-    .setDescription('API for automated patent filing')
+    .setDescription('LUMA IP - Legal Utility for Machine Assisted IP Analysis API')
     .setVersion('1.0')
     .addTag('auth', 'Authentication endpoints')
     .addTag('matters', 'Patent matter management')
