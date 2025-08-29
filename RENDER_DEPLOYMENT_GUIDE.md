@@ -1,7 +1,7 @@
-# Render Deployment Guide for Patent Filing Platform
+# Render Deployment Guide for LUMA IP
 
 ## Overview
-This guide will help you deploy the Patent Filing Platform on Render using the Blueprint configuration.
+This guide will help you deploy LUMA IP on Render using the Blueprint configuration.
 
 ## Prerequisites
 

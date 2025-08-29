@@ -14,11 +14,11 @@ export default function HomePage() {
         </div>
 
         <h1 style={{ fontSize: '48px', marginBottom: '20px', color: '#1e293b' }}>
-          🚀 Patent Filing Platform
+          🚀 LUMA IP
         </h1>
         
         <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '40px' }}>
-          Automated patent application system with AI-powered drafting assistance
+          Legal Utility for Machine Assisted IP Analysis
         </p>
 
         <div style={{ 

@@ -1,4 +1,4 @@
-# Minimal Render Blueprint Configuration for Patent Filing Platform
+# Minimal Render Blueprint Configuration for LUMA IP
 # Start with this simpler configuration, then upgrade to full version
 
 databases:

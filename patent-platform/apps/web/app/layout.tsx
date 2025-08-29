@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Patent Filing Platform',
-  description: 'Automated patent filing with AI assistance',
+  title: 'LUMA IP',
+  description: 'Legal Utility for Machine Assisted IP Analysis',
 }
 
 export default function RootLayout({

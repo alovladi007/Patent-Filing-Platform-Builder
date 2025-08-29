@@ -1,6 +1,6 @@
-# Patent Filing Platform
+# LUMA IP
 
-A production-ready automated patent filing platform with AI-powered drafting assistance.
+Legal Utility for Machine Assisted IP Analysis - A production-ready platform with AI-powered intellectual property analysis and patent drafting assistance.
 
 ## 🚀 Quick Start
 
