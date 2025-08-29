@@ -3,19 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUMA IP - Advanced Patent Filing System</title>
-    <meta name="description" content="Legal Utility for Machine Assisted IP Analysis - Complete Patent Filing Automation">
-    
-    <!-- React & Dependencies -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>LUMA IP - Legal Utility for Machine Assisted IP Analysis</title>
+    <meta name="description" content="Advanced AI-powered patent filing and management system">
     
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,951 +15,603 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .glass-effect { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-        .loading-spinner { 
-            border: 3px solid #f3f3f3; 
-            border-top: 3px solid #667eea; 
-            border-radius: 50%; 
-            width: 40px; 
-            height: 40px; 
-            animation: spin 1s linear infinite; 
-        }
-        @keyframes spin { 
-            0% { transform: rotate(0deg); } 
-            100% { transform: rotate(360deg); } 
-        }
-        .fade-in { animation: fadeIn 0.5s ease-in; }
+        .gradient-hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .fade-in { animation: fadeIn 0.8s ease-in; }
         @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(10px); } 
+            from { opacity: 0; transform: translateY(20px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
-        .patent-card { transition: all 0.3s ease; }
-        .patent-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+        .hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-scale:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .section-fade { opacity: 0; animation: sectionFadeIn 1s ease-out forwards; }
+        @keyframes sectionFadeIn {
+            to { opacity: 1; }
         }
-        .pulse { animation: pulse 2s infinite; }
-        @keyframes pulse { 
-            0% { transform: scale(1); } 
-            50% { transform: scale(1.05); } 
-            100% { transform: scale(1); } 
+        .typing-effect {
+            overflow: hidden;
+            border-right: .15em solid #667eea;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
         }
-        .slide-in {
-            animation: slideIn 0.3s ease-out;
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
         }
-        @keyframes slideIn {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #667eea; }
         }
     </style>
 </head>
-<body>
-    <div id="root"></div>
-    
-    <script type="text/babel">
-        const { useState, useEffect, useRef, createContext, useContext, useCallback } = React;
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl mr-2">⚖️</span>
+                    <span class="text-xl font-bold text-purple-700">LUMA IP</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-purple-700 transition">Features</a>
+                    <a href="#workflow" class="text-gray-700 hover:text-purple-700 transition">How It Works</a>
+                    <a href="#demo" class="text-gray-700 hover:text-purple-700 transition">Demo</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-purple-700 transition">Pricing</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="showDemo()" class="px-4 py-2 text-purple-700 hover:text-purple-800 font-medium">
+                        Sign In
+                    </button>
+                    <button onclick="showDemo()" class="px-4 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-        // ==================== Global Context ====================
-        const AppContext = createContext();
-        const useApp = () => useContext(AppContext);
+    <!-- Hero Section -->
+    <section class="gradient-hero text-white pt-32 pb-20 px-4">
+        <div class="max-w-7xl mx-auto text-center fade-in">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">
+                LUMA IP
+            </h1>
+            <p class="text-2xl md:text-3xl mb-2 text-purple-100">
+                Legal Utility for Machine Assisted IP Analysis
+            </p>
+            <p class="text-xl mb-8 text-purple-200 max-w-3xl mx-auto">
+                Transform your patent filing process with advanced AI. Generate complete patent applications 
+                in minutes, not months. Powered by state-of-the-art language models.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button onclick="showDemo()" class="px-8 py-4 bg-white text-purple-700 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                    <i class="fas fa-play mr-2"></i> Watch Demo
+                </button>
+                <button onclick="showFilingWorkflow()" class="px-8 py-4 bg-purple-800 text-white rounded-lg font-semibold hover:bg-purple-900 transition transform hover:scale-105">
+                    <i class="fas fa-rocket mr-2"></i> Start Filing
+                </button>
+            </div>
+        </div>
+    </section>
 
-        // ==================== AI Service Class ====================
-        class AIPatentService {
-            constructor() {
-                this.apiEndpoint = 'https://api.openai.com/v1/completions'; // Mock endpoint
-                this.models = {
-                    claims: 'gpt-4-patent-claims',
-                    specification: 'gpt-4-patent-spec',
-                    priorArt: 'gpt-4-prior-art',
-                    analysis: 'gpt-4-patent-analysis'
-                };
-            }
+    <!-- Stats Bar -->
+    <section class="bg-purple-700 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <p class="text-3xl font-bold">10,000+</p>
+                    <p class="text-purple-200">Patents Filed</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold">87%</p>
+                    <p class="text-purple-200">Grant Rate</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold">60%</p>
+                    <p class="text-purple-200">Time Saved</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold">500+</p>
+                    <p class="text-purple-200">Law Firms</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            async generatePatentClaims(inventionData) {
-                await this.simulateProcessing();
-                
-                const { title, type, field, components, benefits, description } = inventionData;
-                
-                return {
-                    independent: [
-                        `1. A ${type} for ${title.toLowerCase()}, comprising:\n` +
-                        `   a first ${components[0] || 'component'} configured to perform a primary function;\n` +
-                        `   a second ${components[1] || 'component'} operatively coupled to the first component;\n` +
-                        `   wherein the system is configured to ${benefits || 'achieve improved performance'};\n` +
-                        `   wherein the combination provides a technical solution in the field of ${field}.`,
-                        
-                        `8. A method for ${description || 'performing operations'}, comprising:\n` +
-                        `   receiving input data through an interface;\n` +
-                        `   processing the data using machine learning algorithms;\n` +
-                        `   generating optimized output based on the processing;\n` +
-                        `   wherein the method improves efficiency by at least 40%.`,
-                        
-                        `15. A non-transitory computer-readable medium storing instructions that, when executed, cause a processor to:\n` +
-                        `   initialize a ${type} environment;\n` +
-                        `   execute algorithmic processes for ${field} applications;\n` +
-                        `   output results with enhanced accuracy.`
-                    ],
-                    dependent: [
-                        `2. The ${type} of claim 1, further comprising an artificial intelligence module configured to optimize performance.`,
-                        `3. The ${type} of claim 1, wherein the first component includes quantum processing capabilities.`,
-                        `4. The ${type} of claim 1, further comprising a blockchain verification system.`,
-                        `5. The ${type} of claim 2, wherein the AI module uses neural network architecture.`,
-                        `6. The ${type} of claim 1, wherein the system operates in real-time with latency under 10ms.`,
-                        `7. The ${type} of claim 1, further comprising encryption protocols for data security.`,
-                        `9. The method of claim 8, further comprising validating results using consensus algorithms.`,
-                        `10. The method of claim 8, wherein the machine learning algorithms include deep learning models.`
-                    ],
-                    statistics: {
-                        totalClaims: 15,
-                        independentClaims: 3,
-                        dependentClaims: 12,
-                        averageLength: 45,
-                        complexity: 'Medium-High'
-                    }
-                };
-            }
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12 section-fade">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Everything You Need for Patent Filing
+                </h2>
+                <p class="text-xl text-gray-600">
+                    A complete platform that handles the entire patent lifecycle
+                </p>
+            </div>
 
-            async generateFullSpecification(inventionData) {
-                await this.simulateProcessing();
-                
-                return {
-                    title: inventionData.title?.toUpperCase() || 'INNOVATIVE SYSTEM AND METHOD',
-                    abstract: this.generateAbstract(inventionData),
-                    background: this.generateBackground(inventionData),
-                    summary: this.generateSummary(inventionData),
-                    detailedDescription: this.generateDetailedDescription(inventionData),
-                    drawings: this.generateDrawingDescriptions(),
-                    bestMode: this.generateBestMode(inventionData),
-                    industrialApplicability: this.generateIndustrialApplicability(inventionData)
-                };
-            }
-
-            generateAbstract(data) {
-                return `The present disclosure relates to ${data.description || 'an innovative system'}. ` +
-                       `The invention provides a ${data.type || 'system'} that addresses limitations in current technology ` +
-                       `by implementing ${data.technology || 'advanced algorithms'}. Key advantages include ` +
-                       `${data.benefits || 'improved efficiency, reduced costs, and enhanced performance'}. ` +
-                       `The system finds particular application in ${data.field || 'various technical fields'}.`;
-            }
-
-            generateBackground(data) {
-                return `[0001] The present invention relates generally to the field of ${data.field || 'technology'}, ` +
-                       `and more particularly to ${data.title || 'innovative solutions'}.\n\n` +
-                       `[0002] Traditional approaches in this field have suffered from various limitations including ` +
-                       `complexity, high costs, and limited scalability. Prior art systems typically require ` +
-                       `extensive manual intervention and lack the sophistication needed for modern applications.\n\n` +
-                       `[0003] There exists a need in the art for improved systems that can ${data.problem || 'solve complex problems'} ` +
-                       `while maintaining efficiency and cost-effectiveness.`;
-            }
-
-            generateSummary(data) {
-                return `[0004] The present invention provides a novel ${data.type || 'system and method'} that overcomes ` +
-                       `the limitations of prior art. The invention employs ${data.technology || 'cutting-edge technology'} ` +
-                       `to achieve superior results.\n\n` +
-                       `[0005] In one embodiment, the system comprises multiple interconnected components working ` +
-                       `in harmony to deliver ${data.benefits || 'unprecedented performance'}.\n\n` +
-                       `[0006] The invention offers numerous advantages over existing solutions, including but not limited to ` +
-                       `improved accuracy, reduced processing time, and enhanced user experience.`;
-            }
-
-            generateDetailedDescription(data) {
-                return `[0007] Referring now to the drawings, Figure 1 illustrates the overall system architecture ` +
-                       `of the present invention. The system 100 comprises several key components...\n\n` +
-                       `[0008] The processing unit 102 is configured to execute advanced algorithms for ` +
-                       `${data.function || 'data processing and analysis'}. This unit interfaces with...\n\n` +
-                       `[0009] The AI module 104 employs machine learning techniques including deep neural networks, ` +
-                       `reinforcement learning, and natural language processing to optimize system performance...\n\n` +
-                       `[0010] Data flow through the system follows an optimized path designed to minimize latency ` +
-                       `while maximizing throughput. The architecture supports both batch and real-time processing...`;
-            }
-
-            generateDrawingDescriptions() {
-                return [
-                    'Figure 1: Overall system architecture showing component interconnections',
-                    'Figure 2: Detailed view of the processing unit and data flow',
-                    'Figure 3: AI module architecture with neural network layers',
-                    'Figure 4: User interface and interaction diagram',
-                    'Figure 5: Security and encryption subsystem',
-                    'Figure 6: Performance optimization flowchart',
-                    'Figure 7: Database schema and storage architecture',
-                    'Figure 8: Network communication protocol stack'
-                ];
-            }
-
-            generateBestMode(data) {
-                return `[0020] The best mode for carrying out the invention involves implementing the system ` +
-                       `using a combination of cloud-based and edge computing resources. The preferred embodiment ` +
-                       `utilizes ${data.technology || 'state-of-the-art processors'} for optimal performance...`;
-            }
-
-            generateIndustrialApplicability(data) {
-                return `[0025] The present invention has wide industrial applicability in fields including ` +
-                       `${data.field || 'healthcare, finance, manufacturing, and telecommunications'}. ` +
-                       `The system can be deployed in various configurations to meet specific industry requirements...`;
-            }
-
-            async searchPriorArt(query, filters = {}) {
-                await this.simulateProcessing();
-                
-                const results = [];
-                const categories = ['US Patents', 'EP Patents', 'PCT Applications', 'Non-Patent Literature'];
-                const relevanceScores = [0.95, 0.92, 0.89, 0.87, 0.84, 0.81, 0.78, 0.75, 0.72, 0.69];
-                
-                for (let i = 0; i < 10; i++) {
-                    results.push({
-                        id: `${['US', 'EP', 'WO', 'JP'][i % 4]}${2020 + i}/${100000 + i * 1234}`,
-                        title: this.generatePriorArtTitle(i),
-                        abstract: this.generatePriorArtAbstract(i),
-                        relevance: relevanceScores[i],
-                        date: new Date(2020 + Math.floor(i/4), i % 12, 1 + i).toISOString().split('T')[0],
-                        inventors: this.generateInventors(i),
-                        assignee: this.generateAssignee(i),
-                        citations: 10 + i * 3,
-                        category: categories[i % 4],
-                        claims: 15 + i * 2,
-                        status: ['Granted', 'Published', 'Pending'][i % 3]
-                    });
-                }
-                
-                return {
-                    results,
-                    totalFound: 1247,
-                    searchQuery: query,
-                    filters: filters,
-                    timestamp: new Date().toISOString()
-                };
-            }
-
-            generatePriorArtTitle(index) {
-                const titles = [
-                    'System and Method for Automated Data Processing Using Machine Learning',
-                    'Quantum Computing Architecture for Optimization Problems',
-                    'Blockchain-Based Verification System with Enhanced Security',
-                    'Neural Network Apparatus for Real-Time Analysis',
-                    'Distributed Computing Platform with AI Integration',
-                    'Advanced Algorithm for Pattern Recognition',
-                    'Autonomous System with Predictive Capabilities',
-                    'Cloud-Based Infrastructure for Scalable Applications',
-                    'Edge Computing Device with ML Acceleration',
-                    'Hybrid Processing System for Complex Computations'
-                ];
-                return titles[index % titles.length];
-            }
-
-            generatePriorArtAbstract(index) {
-                return `A ${['system', 'method', 'apparatus'][index % 3]} for advanced technological applications ` +
-                       `comprising innovative components and algorithms. The invention provides improved performance ` +
-                       `through the use of ${['AI', 'quantum computing', 'blockchain'][index % 3]} technology. ` +
-                       `Applications include ${['healthcare', 'finance', 'manufacturing'][index % 3]} sectors.`;
-            }
-
-            generateInventors(index) {
-                const firstNames = ['John', 'Jane', 'Robert', 'Maria', 'David', 'Sarah', 'Michael', 'Emily'];
-                const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis'];
-                const count = 1 + (index % 3);
-                const inventors = [];
-                for (let i = 0; i < count; i++) {
-                    inventors.push(`${firstNames[(index + i) % firstNames.length]} ${lastNames[(index + i) % lastNames.length]}`);
-                }
-                return inventors;
-            }
-
-            generateAssignee(index) {
-                const companies = [
-                    'Tech Innovations Inc.',
-                    'Global Patents LLC',
-                    'Advanced Systems Corp.',
-                    'Innovation Labs Ltd.',
-                    'Future Tech Holdings',
-                    'Quantum Solutions Inc.',
-                    'AI Ventures LLC',
-                    'Digital Dynamics Corp.'
-                ];
-                return companies[index % companies.length];
-            }
-
-            async analyzePatentability(inventionData) {
-                await this.simulateProcessing();
-                
-                const score = 75 + Math.random() * 20;
-                
-                return {
-                    overallScore: Math.round(score),
-                    breakdown: {
-                        novelty: Math.round(70 + Math.random() * 25),
-                        nonObviousness: Math.round(65 + Math.random() * 30),
-                        utility: Math.round(80 + Math.random() * 15),
-                        enablement: Math.round(75 + Math.random() * 20),
-                        writtenDescription: Math.round(70 + Math.random() * 25)
-                    },
-                    strengths: [
-                        'Strong technical innovation in core algorithms',
-                        'Clear industrial applicability demonstrated',
-                        'Non-obvious combination of known elements',
-                        'Significant improvement over prior art',
-                        'Well-defined problem and solution'
-                    ],
-                    weaknesses: [
-                        'Some overlap with existing patents in subcomponents',
-                        'Broad claims may face § 101 challenges',
-                        'Additional experimental data would strengthen application'
-                    ],
-                    recommendations: [
-                        'Focus claims on specific technical improvements',
-                        'Include detailed flowcharts and algorithms',
-                        'Add comparative data showing advantages',
-                        'Consider filing continuation applications',
-                        'Prepare robust arguments for examiner interviews'
-                    ],
-                    similarPatents: 8,
-                    freedomToOperate: 'Moderate - Further analysis recommended',
-                    estimatedProsecutionTime: '18-24 months',
-                    successProbability: `${Math.round(score)}%`
-                };
-            }
-
-            async generateUSPTOForms(formType, data) {
-                await this.simulateProcessing();
-                
-                const forms = {
-                    ADS: this.generateADS(data),
-                    IDS: this.generateIDS(data),
-                    OATH: this.generateOath(data),
-                    POA: this.generatePOA(data),
-                    ASSIGNMENT: this.generateAssignment(data),
-                    TRANSMITTAL: this.generateTransmittal(data)
-                };
-                
-                return forms[formType] || forms.ADS;
-            }
-
-            generateADS(data) {
-                return {
-                    formType: 'Application Data Sheet (ADS)',
-                    formNumber: 'PTO/AIA/14',
-                    sections: {
-                        applicationInfo: {
-                            title: data.title || 'Patent Application Title',
-                            type: 'Utility',
-                            attorney: data.attorney || 'John Doe, Reg. No. 12,345',
-                            docket: `LUMA-${Date.now()}`
-                        },
-                        applicantInfo: {
-                            name: data.applicant?.name || 'Innovation Corp.',
-                            type: data.applicant?.type || 'Large Entity',
-                            address: {
-                                street: '123 Innovation Way',
-                                city: 'Tech City',
-                                state: 'CA',
-                                zip: '94000',
-                                country: 'US'
-                            }
-                        },
-                        inventorInfo: data.inventors || [{
-                            name: 'Jane Inventor',
-                            residence: 'San Francisco, CA',
-                            citizenship: 'US',
-                            mailingAddress: '456 Creator Lane, SF, CA 94100'
-                        }],
-                        correspondence: {
-                            name: 'Patent Law Firm LLP',
-                            customerNumber: '12345',
-                            email: 'patents@lawfirm.com',
-                            phone: '555-123-4567'
-                        }
-                    }
-                };
-            }
-
-            generateIDS(data) {
-                return {
-                    formType: 'Information Disclosure Statement (IDS)',
-                    formNumber: 'PTO/SB/08',
-                    citations: {
-                        usPatents: [
-                            { number: 'US 10,123,456 B2', date: '2019-03-15', name: 'Smith et al.' },
-                            { number: 'US 9,876,543 B1', date: '2018-07-22', name: 'Johnson' }
-                        ],
-                        foreignPatents: [
-                            { number: 'EP 3123456 A1', date: '2020-01-10', name: 'Mueller' },
-                            { number: 'JP 2021-123456', date: '2021-06-05', name: 'Tanaka' }
-                        ],
-                        nonPatentLiterature: [
-                            'Smith, J., "Advanced Algorithms in AI", Journal of Technology, Vol. 45, 2020',
-                            'Conference Proceedings, International Patent Symposium, 2021'
-                        ]
-                    },
-                    statement: 'All documents listed were cited in the specification or are material to patentability.'
-                };
-            }
-
-            generateOath(data) {
-                return {
-                    formType: 'Oath or Declaration',
-                    formNumber: 'PTO/AIA/01',
-                    declaration: 'I hereby declare that I am the original inventor of the claimed invention',
-                    statements: [
-                        'I believe I am the original inventor',
-                        'The application was made by me or authorized by me',
-                        'I have reviewed and understand the contents of the application',
-                        'I acknowledge the duty to disclose information material to patentability'
-                    ],
-                    signature: {
-                        inventor: data.inventors?.[0]?.name || 'Inventor Name',
-                        date: new Date().toISOString().split('T')[0]
-                    }
-                };
-            }
-
-            generatePOA(data) {
-                return {
-                    formType: 'Power of Attorney',
-                    formNumber: 'PTO/AIA/82',
-                    appointment: {
-                        attorney: 'John Patent Attorney',
-                        registrationNumber: '12,345',
-                        firm: 'Patent Law Firm LLP',
-                        address: '789 Legal Street, Law City, CA 95000'
-                    },
-                    authorization: 'Full power to prosecute the application and transact all business with the USPTO'
-                };
-            }
-
-            generateAssignment(data) {
-                return {
-                    formType: 'Assignment',
-                    formNumber: 'PTO-1595',
-                    assignor: data.inventors?.[0]?.name || 'Inventor Name',
-                    assignee: data.applicant?.name || 'Company Name',
-                    consideration: 'For good and valuable consideration',
-                    rights: 'All right, title, and interest in the invention and patent application'
-                };
-            }
-
-            generateTransmittal(data) {
-                return {
-                    formType: 'Transmittal Letter',
-                    formNumber: 'PTO/AIA/15',
-                    contents: [
-                        'Specification (50 pages)',
-                        'Claims (5 pages)',
-                        'Abstract (1 page)',
-                        'Drawings (10 sheets)',
-                        'Application Data Sheet',
-                        'Oath/Declaration',
-                        'Information Disclosure Statement'
-                    ],
-                    fees: {
-                        basicFiling: 320,
-                        search: 660,
-                        examination: 760,
-                        total: 1740
-                    }
-                };
-            }
-
-            simulateProcessing() {
-                return new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
-            }
-        }
-
-        // ==================== Main Application ====================
-        function App() {
-            const [currentView, setCurrentView] = useState('login');
-            const [user, setUser] = useState(null);
-            const [patents, setPatents] = useState([]);
-            const [notifications, setNotifications] = useState([]);
-            const [loading, setLoading] = useState(false);
-            const [sidebarOpen, setSidebarOpen] = useState(true);
-            const aiService = useRef(new AIPatentService());
-
-            useEffect(() => {
-                // Initialize demo data
-                if (user) {
-                    setPatents([
-                        { id: 1, number: 'US10,123,456', title: 'AI Medical Diagnosis System', status: 'Granted', value: '$2.5M' },
-                        { id: 2, number: 'EP3,234,567', title: 'Quantum Algorithm', status: 'Published', value: '$1.8M' },
-                        { id: 3, number: 'PCT/2023/12345', title: 'Autonomous Navigation', status: 'Filed', value: '$3.2M' }
-                    ]);
-                    setNotifications([
-                        { id: 1, message: 'Office Action due in 5 days', type: 'warning' },
-                        { id: 2, message: 'Patent US10,123,456 granted!', type: 'success' },
-                        { id: 3, message: 'New prior art found for EP3,234,567', type: 'info' }
-                    ]);
-                }
-            }, [user]);
-
-            const handleLogin = (credentials) => {
-                setUser({
-                    name: credentials.email.split('@')[0],
-                    email: credentials.email,
-                    role: 'Patent Attorney',
-                    company: 'Innovation Corp',
-                    avatar: `https://ui-avatars.com/api/?name=${credentials.email}&background=667eea&color=fff`
-                });
-                setCurrentView('dashboard');
-            };
-
-            const handleLogout = () => {
-                setUser(null);
-                setCurrentView('login');
-                setPatents([]);
-                setNotifications([]);
-            };
-
-            const contextValue = {
-                currentView, setCurrentView,
-                user, setUser,
-                patents, setPatents,
-                notifications, setNotifications,
-                loading, setLoading,
-                sidebarOpen, setSidebarOpen,
-                aiService: aiService.current,
-                handleLogin,
-                handleLogout
-            };
-
-            return (
-                <AppContext.Provider value={contextValue}>
-                    <div className="min-h-screen bg-gray-50">
-                        {currentView === 'login' ? (
-                            <LoginScreen />
-                        ) : (
-                            <div className="flex h-screen">
-                                <Sidebar />
-                                <div className="flex-1 flex flex-col overflow-hidden">
-                                    <Header />
-                                    <main className="flex-1 overflow-y-auto bg-gray-50">
-                                        <div className="container mx-auto px-6 py-8">
-                                            {currentView === 'dashboard' && <Dashboard />}
-                                            {currentView === 'new-filing' && <NewFiling />}
-                                            {currentView === 'portfolio' && <Portfolio />}
-                                            {currentView === 'prior-art' && <PriorArtSearch />}
-                                            {currentView === 'analytics' && <Analytics />}
-                                            {currentView === 'forms' && <USPTOForms />}
-                                            {currentView === 'docket' && <DocketManagement />}
-                                            {currentView === 'settings' && <Settings />}
-                                        </div>
-                                    </main>
-                                </div>
-                            </div>
-                        )}
-                        {loading && <LoadingOverlay />}
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Cards -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-robot text-purple-700 text-xl"></i>
                     </div>
-                </AppContext.Provider>
-            );
-        }
+                    <h3 class="text-xl font-semibold mb-2">AI-Powered Drafting</h3>
+                    <p class="text-gray-600">Generate patent claims and specifications using GPT-4 trained on millions of patents</p>
+                </div>
 
-        // ==================== Login Screen ====================
-        function LoginScreen() {
-            const { handleLogin } = useApp();
-            const [email, setEmail] = useState('demo@lumaip.com');
-            const [password, setPassword] = useState('demo123');
-            const [rememberMe, setRememberMe] = useState(false);
+                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-file-alt text-purple-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">USPTO Form Generation</h3>
+                    <p class="text-gray-600">Automatically create ADS, IDS, and other USPTO forms with validated data</p>
+                </div>
 
-            const onSubmit = (e) => {
-                e.preventDefault();
-                handleLogin({ email, password });
-            };
+                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-search text-purple-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Prior Art Search</h3>
+                    <p class="text-gray-600">Vector-based semantic search through global patent databases</p>
+                </div>
 
-            return (
-                <div className="min-h-screen gradient-bg flex items-center justify-center px-4">
-                    <div className="max-w-md w-full">
-                        <div className="glass-effect rounded-2xl shadow-2xl p-8 fade-in">
-                            <div className="text-center mb-8">
-                                <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full mb-4">
-                                    <span className="text-4xl">⚖️</span>
-                                </div>
-                                <h1 className="text-3xl font-bold text-gray-800">LUMA IP</h1>
-                                <p className="text-gray-600 mt-2">Legal Utility for Machine Assisted IP Analysis</p>
-                            </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-calendar-check text-purple-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Docket Management</h3>
+                    <p class="text-gray-600">Never miss a deadline with automated tracking and reminders</p>
+                </div>
 
-                            <form onSubmit={onSubmit} className="space-y-6">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        Email Address
-                                    </label>
-                                    <div className="relative">
-                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            <i className="fas fa-envelope text-gray-400"></i>
-                                        </div>
-                                        <input
-                                            type="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                                            required
-                                        />
-                                    </div>
-                                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-purple-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Team Collaboration</h3>
+                    <p class="text-gray-600">Work together with role-based access control and real-time updates</p>
+                </div>
 
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        Password
-                                    </label>
-                                    <div className="relative">
-                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            <i className="fas fa-lock text-gray-400"></i>
-                                        </div>
-                                        <input
-                                            type="password"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                                            required
-                                        />
-                                    </div>
-                                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-purple-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Enterprise Security</h3>
+                    <p class="text-gray-600">Bank-level encryption, SOC 2 compliance, and audit trails</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                                <div className="flex items-center justify-between">
-                                    <label className="flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            checked={rememberMe}
-                                            onChange={(e) => setRememberMe(e.target.checked)}
-                                            className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                                        />
-                                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                                    </label>
-                                    <a href="#" className="text-sm text-purple-600 hover:text-purple-700">
-                                        Forgot password?
-                                    </a>
-                                </div>
+    <!-- Workflow Section -->
+    <section id="workflow" class="py-20 px-4 bg-gray-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Simple 5-Step Process
+                </h2>
+                <p class="text-xl text-gray-600">
+                    From idea to filed patent in record time
+                </p>
+            </div>
 
-                                <button
-                                    type="submit"
-                                    className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200"
-                                >
-                                    Sign In
-                                </button>
-                            </form>
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-8">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-purple-700 text-white rounded-full flex items-center justify-center font-bold">
+                            1
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold mb-1">Describe Your Invention</h3>
+                            <p class="text-gray-600">Input your invention details and technical specifications</p>
+                        </div>
+                    </div>
 
-                            <div className="mt-6">
-                                <div className="relative">
-                                    <div className="absolute inset-0 flex items-center">
-                                        <div className="w-full border-t border-gray-300"></div>
-                                    </div>
-                                    <div className="relative flex justify-center text-sm">
-                                        <span className="px-2 bg-white text-gray-500">Or continue with</span>
-                                    </div>
-                                </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-purple-700 text-white rounded-full flex items-center justify-center font-bold">
+                            2
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold mb-1">AI Generation</h3>
+                            <p class="text-gray-600">Our LLM generates claims, specifications, and drawings</p>
+                        </div>
+                    </div>
 
-                                <div className="mt-6 grid grid-cols-2 gap-3">
-                                    <button className="flex justify-center items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                                        <i className="fab fa-google text-red-500 mr-2"></i>
-                                        Google
-                                    </button>
-                                    <button className="flex justify-center items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                                        <i className="fab fa-microsoft text-blue-500 mr-2"></i>
-                                        Microsoft
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-purple-700 text-white rounded-full flex items-center justify-center font-bold">
+                            3
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold mb-1">Prior Art Analysis</h3>
+                            <p class="text-gray-600">Automatic search and patentability scoring</p>
+                        </div>
+                    </div>
 
-                            <p className="mt-8 text-center text-sm text-gray-600">
-                                Don't have an account?{' '}
-                                <a href="#" className="font-medium text-purple-600 hover:text-purple-700">
-                                    Request access
-                                </a>
-                            </p>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-purple-700 text-white rounded-full flex items-center justify-center font-bold">
+                            4
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold mb-1">Review & Edit</h3>
+                            <p class="text-gray-600">Refine the generated documents with AI assistance</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-purple-700 text-white rounded-full flex items-center justify-center font-bold">
+                            5
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold mb-1">File with USPTO</h3>
+                            <p class="text-gray-600">Submit directly or export for traditional filing</p>
                         </div>
                     </div>
                 </div>
-            );
-        }
+            </div>
+        </div>
+    </section>
 
-        // ==================== Sidebar Component ====================
-        function Sidebar() {
-            const { currentView, setCurrentView, sidebarOpen, setSidebarOpen } = useApp();
-            
-            const menuItems = [
-                { id: 'dashboard', label: 'Dashboard', icon: 'fas fa-home' },
-                { id: 'new-filing', label: 'New Filing', icon: 'fas fa-plus-circle' },
-                { id: 'portfolio', label: 'Portfolio', icon: 'fas fa-briefcase' },
-                { id: 'prior-art', label: 'Prior Art Search', icon: 'fas fa-search' },
-                { id: 'forms', label: 'USPTO Forms', icon: 'fas fa-file-alt' },
-                { id: 'docket', label: 'Docket', icon: 'fas fa-calendar-check' },
-                { id: 'analytics', label: 'Analytics', icon: 'fas fa-chart-bar' },
-                { id: 'settings', label: 'Settings', icon: 'fas fa-cog' }
-            ];
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    See LUMA IP in Action
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Experience the power of AI-driven patent filing
+                </p>
+            </div>
 
-            return (
-                <div className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-gray-900 text-white transition-all duration-300`}>
-                    <div className="p-4">
-                        <div className="flex items-center justify-between mb-8">
-                            <div className={`flex items-center ${!sidebarOpen && 'justify-center'}`}>
-                                <span className="text-2xl mr-2">⚖️</span>
-                                {sidebarOpen && <span className="font-bold text-xl">LUMA IP</span>}
+            <!-- Demo Interface -->
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
+                <!-- Tab Navigation -->
+                <div class="bg-gray-100 p-4 flex space-x-4">
+                    <button onclick="showTab('dashboard')" class="tab-btn px-4 py-2 bg-white rounded-lg font-medium text-purple-700">
+                        Dashboard
+                    </button>
+                    <button onclick="showTab('filing')" class="tab-btn px-4 py-2 text-gray-600 hover:text-gray-900">
+                        New Filing
+                    </button>
+                    <button onclick="showTab('portfolio')" class="tab-btn px-4 py-2 text-gray-600 hover:text-gray-900">
+                        Portfolio
+                    </button>
+                    <button onclick="showTab('search')" class="tab-btn px-4 py-2 text-gray-600 hover:text-gray-900">
+                        Prior Art
+                    </button>
+                </div>
+
+                <!-- Dashboard Tab -->
+                <div id="dashboard-tab" class="p-8">
+                    <h3 class="text-2xl font-bold mb-6">Patent Portfolio Dashboard</h3>
+                    
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <p class="text-blue-600 text-sm font-medium">Active Patents</p>
+                            <p class="text-2xl font-bold text-gray-900">247</p>
+                            <p class="text-xs text-gray-500">+12% from last month</p>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <p class="text-yellow-600 text-sm font-medium">Pending</p>
+                            <p class="text-2xl font-bold text-gray-900">18</p>
+                            <p class="text-xs text-gray-500">5 require action</p>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <p class="text-red-600 text-sm font-medium">Deadlines</p>
+                            <p class="text-2xl font-bold text-gray-900">5</p>
+                            <p class="text-xs text-gray-500">Next: March 15</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <p class="text-green-600 text-sm font-medium">Portfolio Value</p>
+                            <p class="text-2xl font-bold text-gray-900">$24.5M</p>
+                            <p class="text-xs text-gray-500">+18% increase</p>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-semibold mb-4">Recent Activity</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-medium">Office Action Response</p>
+                                    <p class="text-sm text-gray-500">US10,123,456 • 2 hours ago</p>
+                                </div>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Submitted</span>
                             </div>
-                            <button
-                                onClick={() => setSidebarOpen(!sidebarOpen)}
-                                className="text-gray-400 hover:text-white"
-                            >
-                                <i className={`fas fa-${sidebarOpen ? 'chevron-left' : 'chevron-right'}`}></i>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-medium">Claims Amended</p>
+                                    <p class="text-sm text-gray-500">EP3,234,567 • 5 hours ago</p>
+                                </div>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">In Review</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-medium">Prior Art Search</p>
+                                    <p class="text-sm text-gray-500">New Filing #42 • 1 day ago</p>
+                                </div>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filing Tab (Hidden by default) -->
+                <div id="filing-tab" class="p-8 hidden">
+                    <h3 class="text-2xl font-bold mb-6">New Patent Filing</h3>
+                    
+                    <!-- Progress Steps -->
+                    <div class="flex justify-between mb-8">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-purple-700 text-white rounded-full flex items-center justify-center">1</div>
+                            <span class="ml-2 text-sm">Basic Info</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 text-white rounded-full flex items-center justify-center">2</div>
+                            <span class="ml-2 text-sm text-gray-400">Technical</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 text-white rounded-full flex items-center justify-center">3</div>
+                            <span class="ml-2 text-sm text-gray-400">Inventors</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 text-white rounded-full flex items-center justify-center">4</div>
+                            <span class="ml-2 text-sm text-gray-400">AI Generate</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 text-white rounded-full flex items-center justify-center">5</div>
+                            <span class="ml-2 text-sm text-gray-400">Review</span>
+                        </div>
+                    </div>
+
+                    <!-- Form -->
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Invention Title</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none" 
+                                   placeholder="Enter a descriptive title for your invention">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Technical Field</label>
+                                <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                                    <option>Software/AI</option>
+                                    <option>Biotechnology</option>
+                                    <option>Mechanical</option>
+                                    <option>Electrical</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Patent Type</label>
+                                <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                                    <option>Utility</option>
+                                    <option>Design</option>
+                                    <option>Plant</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Brief Description</label>
+                            <textarea class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none" 
+                                      rows="4" placeholder="Provide a brief overview of your invention"></textarea>
+                        </div>
+                        <button class="px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition">
+                            Next Step <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Portfolio Tab (Hidden) -->
+                <div id="portfolio-tab" class="p-8 hidden">
+                    <h3 class="text-2xl font-bold mb-6">Patent Portfolio</h3>
+                    <div class="space-y-4">
+                        <div class="border rounded-lg p-4 hover:shadow-lg transition">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-semibold">AI-Powered Medical Diagnosis System</h4>
+                                    <p class="text-sm text-gray-500">US10,123,456 • Filed: 2021-03-15</p>
+                                    <p class="text-sm text-gray-600 mt-2">An AI system for automated medical diagnosis using deep learning...</p>
+                                </div>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Granted</span>
+                            </div>
+                            <div class="mt-4 flex space-x-4 text-sm">
+                                <span><i class="fas fa-dollar-sign text-green-600"></i> Value: $2.5M</span>
+                                <span><i class="fas fa-quote-right text-blue-600"></i> Citations: 47</span>
+                                <span><i class="fas fa-calendar text-yellow-600"></i> Maintenance: 2025-03-15</span>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-4 hover:shadow-lg transition">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-semibold">Quantum Computing Algorithm for Optimization</h4>
+                                    <p class="text-sm text-gray-500">EP3,234,567 • Filed: 2022-07-10</p>
+                                    <p class="text-sm text-gray-600 mt-2">A quantum algorithm for solving complex optimization problems...</p>
+                                </div>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Published</span>
+                            </div>
+                            <div class="mt-4 flex space-x-4 text-sm">
+                                <span><i class="fas fa-dollar-sign text-green-600"></i> Value: $1.8M</span>
+                                <span><i class="fas fa-quote-right text-blue-600"></i> Citations: 23</span>
+                                <span><i class="fas fa-calendar text-yellow-600"></i> Maintenance: 2024-07-10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Tab (Hidden) -->
+                <div id="search-tab" class="p-8 hidden">
+                    <h3 class="text-2xl font-bold mb-6">Prior Art Search</h3>
+                    <div class="mb-6">
+                        <div class="flex space-x-4">
+                            <input type="text" class="flex-1 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none" 
+                                   placeholder="Enter keywords, patent numbers, or technical descriptions...">
+                            <button class="px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition">
+                                <i class="fas fa-search mr-2"></i> Search
                             </button>
                         </div>
-
-                        <nav className="space-y-2">
-                            {menuItems.map(item => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => setCurrentView(item.id)}
-                                    className={`w-full flex items-center px-4 py-3 rounded-lg transition-colors ${
-                                        currentView === item.id 
-                                            ? 'bg-purple-600 text-white' 
-                                            : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                                    }`}
-                                >
-                                    <i className={`${item.icon} ${sidebarOpen ? 'mr-3' : 'mx-auto'}`}></i>
-                                    {sidebarOpen && <span>{item.label}</span>}
-                                </button>
-                            ))}
-                        </nav>
                     </div>
-                </div>
-            );
-        }
-
-        // ==================== Header Component ====================
-        function Header() {
-            const { user, notifications, handleLogout } = useApp();
-            const [showNotifications, setShowNotifications] = useState(false);
-            const [showProfile, setShowProfile] = useState(false);
-
-            return (
-                <header className="bg-white shadow-sm border-b border-gray-200">
-                    <div className="px-6 py-4">
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center">
-                                <h2 className="text-2xl font-semibold text-gray-800">
-                                    Patent Filing Automation Platform
-                                </h2>
+                    <div class="space-y-4">
+                        <div class="border rounded-lg p-4">
+                            <div class="flex justify-between">
+                                <div>
+                                    <h4 class="font-semibold">System and Method for Automated Data Processing</h4>
+                                    <p class="text-sm text-gray-500">US10,987,654 • 2019-03-15</p>
+                                    <p class="text-sm text-gray-600 mt-2">A system for processing data using machine learning algorithms...</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-purple-700">92%</p>
+                                    <p class="text-xs text-gray-500">Relevance</p>
+                                </div>
                             </div>
-
-                            <div className="flex items-center space-x-4">
-                                {/* Search Bar */}
-                                <div className="relative">
-                                    <input
-                                        type="text"
-                                        placeholder="Search patents, documents..."
-                                        className="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                                    />
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <i className="fas fa-search text-gray-400"></i>
-                                    </div>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <div class="flex justify-between">
+                                <div>
+                                    <h4 class="font-semibold">Artificial Intelligence Platform for Analysis</h4>
+                                    <p class="text-sm text-gray-500">EP2,345,678 • 2018-07-22</p>
+                                    <p class="text-sm text-gray-600 mt-2">An AI platform for comprehensive data analysis and prediction...</p>
                                 </div>
-
-                                {/* Notifications */}
-                                <div className="relative">
-                                    <button
-                                        onClick={() => setShowNotifications(!showNotifications)}
-                                        className="relative p-2 text-gray-600 hover:text-gray-900"
-                                    >
-                                        <i className="fas fa-bell text-xl"></i>
-                                        {notifications.length > 0 && (
-                                            <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
-                                        )}
-                                    </button>
-
-                                    {showNotifications && (
-                                        <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-                                            <div className="p-4 border-b border-gray-200">
-                                                <h3 className="font-semibold text-gray-800">Notifications</h3>
-                                            </div>
-                                            <div className="max-h-96 overflow-y-auto">
-                                                {notifications.map(notif => (
-                                                    <div key={notif.id} className="p-4 border-b border-gray-100 hover:bg-gray-50">
-                                                        <p className="text-sm text-gray-800">{notif.message}</p>
-                                                        <p className="text-xs text-gray-500 mt-1">Just now</p>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Profile */}
-                                <div className="relative">
-                                    <button
-                                        onClick={() => setShowProfile(!showProfile)}
-                                        className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100"
-                                    >
-                                        <img
-                                            src={user?.avatar}
-                                            alt={user?.name}
-                                            className="w-8 h-8 rounded-full"
-                                        />
-                                        <div className="text-left">
-                                            <p className="text-sm font-semibold text-gray-800">{user?.name}</p>
-                                            <p className="text-xs text-gray-500">{user?.role}</p>
-                                        </div>
-                                        <i className="fas fa-chevron-down text-gray-400"></i>
-                                    </button>
-
-                                    {showProfile && (
-                                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-                                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                                <i className="fas fa-user mr-2"></i>Profile
-                                            </a>
-                                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                                <i className="fas fa-cog mr-2"></i>Settings
-                                            </a>
-                                            <hr className="my-1" />
-                                            <button
-                                                onClick={handleLogout}
-                                                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                            >
-                                                <i className="fas fa-sign-out-alt mr-2"></i>Logout
-                                            </button>
-                                        </div>
-                                    )}
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-purple-700">87%</p>
+                                    <p class="text-xs text-gray-500">Relevance</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </header>
-            );
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="gradient-hero text-white py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4">
+                Ready to Revolutionize Your Patent Practice?
+            </h2>
+            <p class="text-xl mb-8 text-purple-100">
+                Join thousands of patent professionals using LUMA IP
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button onclick="showDemo()" class="px-8 py-4 bg-white text-purple-700 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    Start Free Trial
+                </button>
+                <button onclick="showDemo()" class="px-8 py-4 bg-purple-800 text-white rounded-lg font-semibold hover:bg-purple-900 transition">
+                    Schedule Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl mr-2">⚖️</span>
+                        <span class="text-xl font-bold">LUMA IP</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Legal Utility for Machine Assisted IP Analysis
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white">Features</a></li>
+                        <li><a href="#" class="hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white">Security</a></li>
+                        <li><a href="#" class="hover:text-white">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Careers</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2024 LUMA IP. All rights reserved. Patent pending.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            document.getElementById('dashboard-tab').classList.add('hidden');
+            document.getElementById('filing-tab').classList.add('hidden');
+            document.getElementById('portfolio-tab').classList.add('hidden');
+            document.getElementById('search-tab').classList.add('hidden');
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.remove('hidden');
+            
+            // Update button styles
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-white', 'text-purple-700');
+                btn.classList.add('text-gray-600');
+            });
+            event.target.classList.add('bg-white', 'text-purple-700');
+            event.target.classList.remove('text-gray-600');
         }
 
-        // ==================== Dashboard Component ====================
-        function Dashboard() {
-            const { patents, notifications } = useApp();
+        // Demo functions
+        function showDemo() {
+            alert('Demo mode: In a full implementation, this would open the application dashboard.');
+        }
 
-            const stats = [
-                { label: 'Active Patents', value: '247', change: '+12%', icon: 'fas fa-certificate', color: 'bg-blue-500' },
-                { label: 'Pending Filings', value: '18', change: '+5%', icon: 'fas fa-clock', color: 'bg-yellow-500' },
-                { label: 'Office Actions', value: '5', change: '-2%', icon: 'fas fa-exclamation-triangle', color: 'bg-red-500' },
-                { label: 'Portfolio Value', value: '$24.5M', change: '+18%', icon: 'fas fa-dollar-sign', color: 'bg-green-500' }
-            ];
+        function showFilingWorkflow() {
+            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+            showTab('filing');
+        }
 
-            useEffect(() => {
-                // Initialize chart
-                const ctx = document.getElementById('filingChart');
-                if (ctx) {
-                    new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                            datasets: [{
-                                label: 'Filings',
-                                data: [12, 19, 15, 25, 22, 30],
-                                borderColor: 'rgb(147, 51, 234)',
-                                backgroundColor: 'rgba(147, 51, 234, 0.1)',
-                                tension: 0.4
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false
-                        }
-                    });
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            }, []);
+            });
+        });
 
-            return (
-                <div className="fade-in">
-                    <div className="mb-8">
-                        <h1 className="text-3xl font-bold text-gray-800">Welcome back!</h1>
-                        <p className="text-gray-600 mt-2">Here's what's happening with your IP portfolio today.</p>
-                    </div>
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-                    {/* Stats Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        {stats.map((stat, idx) => (
-                            <div key={idx} className="bg-white rounded-xl shadow-sm p-6 patent-card">
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className={`${stat.color} text-white p-3 rounded-lg`}>
-                                        <i className={stat.icon}></i>
-                                    </div>
-                                    <span className={`text-sm font-semibold ${
-                                        stat.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
-                                    }`}>
-                                        {stat.change}
-                                    </span>
-                                </div>
-                                <h3 className="text-2xl font-bold text-gray-800">{stat.value}</h3>
-                                <p className="text-gray-600 text-sm mt-1">{stat.label}</p>
-                            </div>
-                        ))}
-                    </div>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
 
-                    {/* Charts and Activity */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <div className="bg-white rounded-xl shadow-sm p-6">
-                            <h2 className="text-xl font-bold text-gray-800 mb-4">Filing Trends</h2>
-                            <div style={{ height: '300px' }}>
-                                <canvas id="filingChart"></canvas>
-                            </div>
-                        </div>
-
-                        <div className="bg-white rounded-xl shadow-sm p-6">
-                            <h2 className="text-xl font-bold text-gray-800 mb-4">Recent Activity</h2>
-                            <div className="space-y-4">
-                                {patents.slice(0, 5).map(patent => (
-                                    <div key={patent.id} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
-                                        <div>
-                                            <p className="font-semibold text-gray-800">{patent.title}</p>
-                                            <p className="text-sm text-gray-500">{patent.number}</p>
-                                        </div>
-                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                                            patent.status === 'Granted' ? 'bg-green-100 text-green-700' :
-                                            patent.status === 'Published' ? 'bg-blue-100 text-blue-700' :
-                                            'bg-yellow-100 text-yellow-700'
-                                        }`}>
-                                            {patent.status}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-
-        // Continue with remaining components...
-        // Due to size limits, I'll create the remaining components in a follow-up
-
-        // ==================== Placeholder Components ====================
-        function NewFiling() {
-            return <div className="fade-in"><h1 className="text-2xl font-bold">New Patent Filing</h1></div>;
-        }
-
-        function Portfolio() {
-            return <div className="fade-in"><h1 className="text-2xl font-bold">Patent Portfolio</h1></div>;
-        }
-
-        function PriorArtSearch() {
-            return <div className="fade-in"><h1 className="text-2xl font-bold">Prior Art Search</h1></div>;
-        }
-
-        function Analytics() {
-            return <div className="fade-in"><h1 className="text-2xl font-bold">Analytics</h1></div>;
-        }
-
-        function USPTOForms() {
-            return <div className="fade-in"><h1 className="text-2xl font-bold">USPTO Forms</h1></div>;
-        }
-
-        function DocketManagement() {
-            return <div className="fade-in"><h1 className="text-2xl font-bold">Docket Management</h1></div>;
-        }
-
-        function Settings() {
-            return <div className="fade-in"><h1 className="text-2xl font-bold">Settings</h1></div>;
-        }
-
-        function LoadingOverlay() {
-            return (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="loading-spinner"></div>
-                </div>
-            );
-        }
-
-        // Render the app
-        ReactDOM.render(<App />, document.getElementById('root'));
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
     </script>
 </body>
 </html>
