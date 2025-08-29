@@ -10,7 +10,7 @@ cat > BUILD-PLATFORM.sh << 'ENDSCRIPT'
 
 set -e
 
-echo "🚀 Building Patent Filing Platform..."
+echo "🚀 Building LUMA IP..."
 
 # Create project directory
 mkdir -p patent-platform
@@ -87,9 +87,9 @@ cat > apps/web/app/page.tsx << 'EOF'
 export default function HomePage() {
   return (
     <div style={{ padding: '40px', fontFamily: 'system-ui, -apple-system, sans-serif', maxWidth: '1200px', margin: '0 auto' }}>
-      <h1 style={{ fontSize: '3rem', marginBottom: '20px' }}>🚀 Patent Filing Platform</h1>
+      <h1 style={{ fontSize: '3rem', marginBottom: '20px' }}>🚀 LUMA IP</h1>
       <p style={{ fontSize: '1.2rem', color: '#666', marginBottom: '40px' }}>
-        Automated patent filing with AI-powered drafting assistance
+        Legal Utility for Machine Assisted IP Analysis
       </p>
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '40px' }}>
@@ -218,7 +218,7 @@ async function bootstrap() {
   
   const config = new DocumentBuilder()
     .setTitle('Patent Platform API')
-    .setDescription('Automated patent filing API')
+    .setDescription('LUMA IP - Legal Utility for Machine Assisted IP Analysis API')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
