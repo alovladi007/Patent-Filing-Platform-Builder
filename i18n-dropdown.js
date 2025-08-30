@@ -5,10 +5,13 @@
     const translations = {
         en: {
             // Navigation
+            'nav.product': 'Product',
             'nav.features': 'Features',
             'nav.howItWorks': 'How It Works',
             'nav.demo': 'Demo',
             'nav.pricing': 'Pricing',
+            'nav.security': 'Security',
+            'nav.api': 'API',
             'nav.signIn': 'Sign In',
             'nav.getStarted': 'Get Started',
             
@@ -77,6 +80,7 @@
             // Footer
             'footer.tagline': 'Legal Utility for Machine Assisted IP Analysis',
             'footer.product': 'Product',
+            'footer.productOverview': 'Product Overview',
             'footer.company': 'Company',
             'footer.features': 'Features',
             'footer.pricing': 'Pricing',
@@ -85,6 +89,7 @@
             'footer.about': 'About',
             'footer.blog': 'Blog',
             'footer.careers': 'Careers',
+            'footer.contact': 'Contact',
             'footer.legal': 'Legal',
             'footer.privacy': 'Privacy Policy',
             'footer.terms': 'Terms of Service',
