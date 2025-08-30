@@ -4,6 +4,7 @@ import './globals.css'
 import { Providers } from '@/components/providers'
 import { MainNav } from '@/components/main-nav'
 import { UserNav } from '@/components/user-nav'
+import { LanguageSwitcher } from '@/components/language-switcher'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,6 +27,7 @@ export default function RootLayout({
               <div className="container flex h-16 items-center">
                 <MainNav />
                 <div className="ml-auto flex items-center space-x-4">
+                  <LanguageSwitcher />
                   <UserNav />
                 </div>
               </div>
