@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test i18n</title>
+    <script src="i18n-new.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        .test-item strong {
+            display: inline-block;
+            width: 200px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button.active {
+            background: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>i18n Translation Test</h1>
+    
+    <div style="margin: 30px 0;">
+        <h2>Language Selection:</h2>
+        <button onclick="changeLanguage('en')">English</button>
+        <button onclick="changeLanguage('fr')">Français</button>
+        <button onclick="changeLanguage('es')">Español</button>
+        <button onclick="changeLanguage('zh')">中文</button>
+    </div>
+    
+    <div style="margin: 30px 0;">
+        <h2>Test Translations:</h2>
+        
+        <div class="test-item">
+            <strong>Hero Title:</strong>
+            <span data-i18n="hero.title">Legal Utility for Machine Assisted IP Analysis</span>
+        </div>
+        
+        <div class="test-item">
+            <strong>Hero Subtitle:</strong>
+            <span data-i18n="hero.subtitle">Transform your patent filing process...</span>
+        </div>
+        
+        <div class="test-item">
+            <strong>Watch Demo Button:</strong>
+            <button data-i18n="hero.watchDemo">Watch Demo</button>
+        </div>
+        
+        <div class="test-item">
+            <strong>Start Filing Button:</strong>
+            <button data-i18n="hero.startFiling">Start Filing</button>
+        </div>
+        
+        <div class="test-item">
+            <strong>Features Title:</strong>
+            <span data-i18n="features.title">Everything You Need for Patent Filing</span>
+        </div>
+        
+        <div class="test-item">
+            <strong>AI Drafting:</strong>
+            <span data-i18n="features.aiDrafting.title">AI-Powered Drafting</span>
+        </div>
+        
+        <div class="test-item">
+            <strong>Workflow Title:</strong>
+            <span data-i18n="workflow.title">Simple 5-Step Process</span>
+        </div>
+        
+        <div class="test-item">
+            <strong>CTA Title:</strong>
+            <span data-i18n="cta.title">Ready to Revolutionize Your Patent Practice?</span>
+        </div>
+    </div>
+    
+    <div style="margin: 30px 0; padding: 20px; background: #e8f4f8; border-radius: 5px;">
+        <h3>Debug Info:</h3>
+        <button onclick="testTranslation()">Run Test Translation</button>
+        <p>Open browser console (F12) to see debug output</p>
+    </div>
+</body>
+</html>
