@@ -413,7 +413,72 @@
             'pricing.faq.q2': 'Y a-t-il un essai gratuit?',
             'pricing.faq.a2': 'Oui, nous offrons un essai gratuit de 14 jours pour le plan Professionnel avec accès complet à toutes les fonctionnalités.',
             'pricing.faq.q3': 'Quels modes de paiement acceptez-vous?',
-            'pricing.faq.a3': 'Nous acceptons toutes les principales cartes de crédit, les virements ACH et les virements bancaires pour les plans Entreprise.'
+            'pricing.faq.a3': 'Nous acceptons toutes les principales cartes de crédit, les virements ACH et les virements bancaires pour les plans Entreprise.',
+            
+            // About Page - French
+            'about.hero.title': 'À Propos de LUMA IP',
+            'about.hero.description': 'Nous avons pour mission de démocratiser le dépôt de brevets et de rendre la protection de la propriété intellectuelle accessible à tous les innovateurs.',
+            'about.mission.title': 'Notre Mission',
+            'about.mission.text': 'LUMA IP a été fondée avec la conviction que la protection de l\'innovation ne devrait pas être compliquée ou coûteuse. Nous combinons une technologie d\'IA de pointe avec une expertise juridique pour rationaliser le processus de brevet.',
+            
+            // Contact Page - French
+            'contact.hero.title': 'Contactez-Nous',
+            'contact.hero.description': 'Nous sommes là pour vous aider avec vos besoins en brevets',
+            'contact.name': 'Nom',
+            'contact.email': 'Email',
+            'contact.subject': 'Sujet',
+            'contact.message': 'Message',
+            'contact.send': 'Envoyer le Message',
+            
+            // Blog Page - French
+            'blog.hero.title': 'Blog LUMA IP',
+            'blog.hero.description': 'Perspectives sur le droit des brevets, la technologie IA et l\'innovation',
+            'blog.category.ai': 'Technologie IA',
+            'blog.post1.title': 'L\'Avenir de l\'IA dans la Rédaction de Brevets',
+            'blog.post1.excerpt': 'Explorer comment l\'intelligence artificielle révolutionne le processus de demande de brevet...',
+            'blog.readMore': 'Lire Plus →',
+            
+            // Careers Page - French
+            'careers.hero.title': 'Rejoignez Notre Équipe',
+            'careers.hero.description': 'Aidez-nous à révolutionner l\'industrie des brevets avec l\'IA',
+            'careers.openings.title': 'Postes Ouverts',
+            'careers.job1.title': 'Ingénieur IA Senior',
+            'careers.job1.location': 'Télétravail / San Francisco, CA',
+            'careers.job1.description': 'Construire et optimiser des modèles d\'IA pour l\'analyse et la génération de brevets',
+            'careers.apply': 'Postuler',
+            
+            // Privacy Policy - French
+            'privacy.title': 'Politique de Confidentialité',
+            'privacy.intro': 'Dernière mise à jour : Janvier 2024',
+            'privacy.section1.title': 'Informations que Nous Collectons',
+            'privacy.section1.text': 'Nous collectons les informations que vous nous fournissez directement, comme lorsque vous créez un compte, soumettez une demande de brevet ou nous contactez pour obtenir de l\'aide.',
+            'privacy.section2.title': 'Comment Nous Utilisons Vos Informations',
+            'privacy.section2.text': 'Nous utilisons les informations que nous collectons pour fournir, maintenir et améliorer nos services, traiter les transactions et communiquer avec vous.',
+            'privacy.section3.title': 'Sécurité des Données',
+            'privacy.section3.text': 'Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos informations personnelles contre l\'accès non autorisé, l\'altération, la divulgation ou la destruction.',
+            
+            // Terms of Service - French
+            'terms.title': 'Conditions d\'Utilisation',
+            'terms.intro': 'Dernière mise à jour : Janvier 2024',
+            'terms.section1.title': 'Acceptation des Conditions',
+            'terms.section1.text': 'En accédant et en utilisant les services LUMA IP, vous acceptez d\'être lié par ces Conditions d\'Utilisation.',
+            'terms.section2.title': 'Utilisation des Services',
+            'terms.section2.text': 'Vous ne pouvez utiliser nos services que dans la mesure permise par la loi et conformément à ces Conditions.',
+            
+            // Cookie Policy - French
+            'cookie.title': 'Politique de Cookies',
+            'cookie.intro': 'Dernière mise à jour : Janvier 2024',
+            'cookie.section1.title': 'Que Sont les Cookies',
+            'cookie.section1.text': 'Les cookies sont de petits fichiers texte qui sont placés sur votre appareil lorsque vous visitez notre site Web.',
+            'cookie.section2.title': 'Comment Nous Utilisons les Cookies',
+            'cookie.section2.text': 'Nous utilisons des cookies pour améliorer votre expérience, analyser le trafic du site et personnaliser le contenu.',
+            
+            // Compliance - French
+            'compliance.title': 'Conformité',
+            'compliance.certifications.title': 'Nos Certifications',
+            'compliance.soc2.description': 'Audit annuel de sécurité, disponibilité et confidentialité',
+            'compliance.iso.description': 'Certification du système de gestion de la sécurité de l\'information',
+            'compliance.gdpr.description': 'Conformité totale avec les réglementations européennes sur la protection des données'
         },
         
         es: {
@@ -633,7 +698,72 @@
             'pricing.faq.q2': '¿Hay una prueba gratuita?',
             'pricing.faq.a2': 'Sí, ofrecemos una prueba gratuita de 14 días para el plan Profesional con acceso completo a todas las funciones.',
             'pricing.faq.q3': '¿Qué métodos de pago aceptan?',
-            'pricing.faq.a3': 'Aceptamos todas las principales tarjetas de crédito, transferencias ACH y transferencias bancarias para planes Enterprise.'
+            'pricing.faq.a3': 'Aceptamos todas las principales tarjetas de crédito, transferencias ACH y transferencias bancarias para planes Enterprise.',
+            
+            // About Page - Spanish
+            'about.hero.title': 'Acerca de LUMA IP',
+            'about.hero.description': 'Estamos en una misión para democratizar la presentación de patentes y hacer que la protección de la propiedad intelectual sea accesible para todos los innovadores.',
+            'about.mission.title': 'Nuestra Misión',
+            'about.mission.text': 'LUMA IP fue fundada con la creencia de que proteger la innovación no debería ser complicado o costoso. Combinamos tecnología de IA de vanguardia con experiencia legal para optimizar el proceso de patentes.',
+            
+            // Contact Page - Spanish
+            'contact.hero.title': 'Póngase en Contacto',
+            'contact.hero.description': 'Estamos aquí para ayudar con sus necesidades de patentes',
+            'contact.name': 'Nombre',
+            'contact.email': 'Correo Electrónico',
+            'contact.subject': 'Asunto',
+            'contact.message': 'Mensaje',
+            'contact.send': 'Enviar Mensaje',
+            
+            // Blog Page - Spanish
+            'blog.hero.title': 'Blog de LUMA IP',
+            'blog.hero.description': 'Perspectivas sobre derecho de patentes, tecnología de IA e innovación',
+            'blog.category.ai': 'Tecnología de IA',
+            'blog.post1.title': 'El Futuro de la IA en la Redacción de Patentes',
+            'blog.post1.excerpt': 'Explorando cómo la inteligencia artificial está revolucionando el proceso de solicitud de patentes...',
+            'blog.readMore': 'Leer Más →',
+            
+            // Careers Page - Spanish
+            'careers.hero.title': 'Únase a Nuestro Equipo',
+            'careers.hero.description': 'Ayúdenos a revolucionar la industria de patentes con IA',
+            'careers.openings.title': 'Posiciones Abiertas',
+            'careers.job1.title': 'Ingeniero de IA Senior',
+            'careers.job1.location': 'Remoto / San Francisco, CA',
+            'careers.job1.description': 'Construir y optimizar modelos de IA para análisis y generación de patentes',
+            'careers.apply': 'Aplicar',
+            
+            // Privacy Policy - Spanish
+            'privacy.title': 'Política de Privacidad',
+            'privacy.intro': 'Última actualización: Enero 2024',
+            'privacy.section1.title': 'Información que Recopilamos',
+            'privacy.section1.text': 'Recopilamos información que nos proporciona directamente, como cuando crea una cuenta, envía una solicitud de patente o nos contacta para obtener soporte.',
+            'privacy.section2.title': 'Cómo Usamos Su Información',
+            'privacy.section2.text': 'Usamos la información que recopilamos para proporcionar, mantener y mejorar nuestros servicios, procesar transacciones y comunicarnos con usted.',
+            'privacy.section3.title': 'Seguridad de Datos',
+            'privacy.section3.text': 'Implementamos medidas técnicas y organizativas apropiadas para proteger su información personal contra el acceso no autorizado, alteración, divulgación o destrucción.',
+            
+            // Terms of Service - Spanish
+            'terms.title': 'Términos de Servicio',
+            'terms.intro': 'Última actualización: Enero 2024',
+            'terms.section1.title': 'Aceptación de Términos',
+            'terms.section1.text': 'Al acceder y usar los servicios de LUMA IP, acepta estar sujeto a estos Términos de Servicio.',
+            'terms.section2.title': 'Uso de Servicios',
+            'terms.section2.text': 'Puede usar nuestros servicios solo según lo permitido por la ley y de acuerdo con estos Términos.',
+            
+            // Cookie Policy - Spanish
+            'cookie.title': 'Política de Cookies',
+            'cookie.intro': 'Última actualización: Enero 2024',
+            'cookie.section1.title': 'Qué Son las Cookies',
+            'cookie.section1.text': 'Las cookies son pequeños archivos de texto que se colocan en su dispositivo cuando visita nuestro sitio web.',
+            'cookie.section2.title': 'Cómo Usamos las Cookies',
+            'cookie.section2.text': 'Usamos cookies para mejorar su experiencia, analizar el tráfico del sitio y personalizar el contenido.',
+            
+            // Compliance - Spanish
+            'compliance.title': 'Cumplimiento',
+            'compliance.certifications.title': 'Nuestras Certificaciones',
+            'compliance.soc2.description': 'Auditoría anual de seguridad, disponibilidad y confidencialidad',
+            'compliance.iso.description': 'Certificación del sistema de gestión de seguridad de la información',
+            'compliance.gdpr.description': 'Cumplimiento total con las regulaciones de protección de datos de la UE'
         },
         
         zh: {
@@ -853,7 +983,72 @@
             'pricing.faq.q2': '有免费试用吗？',
             'pricing.faq.a2': '是的，我们为专业版计划提供14天的免费试用，可以完全访问所有功能。',
             'pricing.faq.q3': '你们接受哪些付款方式？',
-            'pricing.faq.a3': '我们接受所有主要信用卡、ACH转账，企业计划还接受电汇。'
+            'pricing.faq.a3': '我们接受所有主要信用卡、ACH转账，企业计划还接受电汇。',
+            
+            // About Page - Chinese
+            'about.hero.title': '关于 LUMA IP',
+            'about.hero.description': '我们的使命是使专利申请民主化，让所有创新者都能获得知识产权保护。',
+            'about.mission.title': '我们的使命',
+            'about.mission.text': 'LUMA IP 的成立基于这样的信念：保护创新不应该复杂或昂贵。我们将尖端的人工智能技术与法律专业知识相结合，简化专利流程。',
+            
+            // Contact Page - Chinese
+            'contact.hero.title': '联系我们',
+            'contact.hero.description': '我们在这里帮助您满足专利需求',
+            'contact.name': '姓名',
+            'contact.email': '电子邮件',
+            'contact.subject': '主题',
+            'contact.message': '消息',
+            'contact.send': '发送消息',
+            
+            // Blog Page - Chinese
+            'blog.hero.title': 'LUMA IP 博客',
+            'blog.hero.description': '关于专利法、人工智能技术和创新的见解',
+            'blog.category.ai': '人工智能技术',
+            'blog.post1.title': '人工智能在专利起草中的未来',
+            'blog.post1.excerpt': '探索人工智能如何革新专利申请流程...',
+            'blog.readMore': '阅读更多 →',
+            
+            // Careers Page - Chinese
+            'careers.hero.title': '加入我们的团队',
+            'careers.hero.description': '帮助我们用人工智能革新专利行业',
+            'careers.openings.title': '开放职位',
+            'careers.job1.title': '高级人工智能工程师',
+            'careers.job1.location': '远程 / 旧金山，加州',
+            'careers.job1.description': '构建和优化用于专利分析和生成的人工智能模型',
+            'careers.apply': '申请',
+            
+            // Privacy Policy - Chinese
+            'privacy.title': '隐私政策',
+            'privacy.intro': '最后更新：2024年1月',
+            'privacy.section1.title': '我们收集的信息',
+            'privacy.section1.text': '我们收集您直接提供给我们的信息，例如当您创建帐户、提交专利申请或联系我们寻求支持时。',
+            'privacy.section2.title': '我们如何使用您的信息',
+            'privacy.section2.text': '我们使用收集的信息来提供、维护和改进我们的服务，处理交易并与您沟通。',
+            'privacy.section3.title': '数据安全',
+            'privacy.section3.text': '我们实施适当的技术和组织措施，以保护您的个人信息免受未经授权的访问、更改、披露或破坏。',
+            
+            // Terms of Service - Chinese
+            'terms.title': '服务条款',
+            'terms.intro': '最后更新：2024年1月',
+            'terms.section1.title': '接受条款',
+            'terms.section1.text': '通过访问和使用 LUMA IP 服务，您同意受这些服务条款的约束。',
+            'terms.section2.title': '服务使用',
+            'terms.section2.text': '您只能在法律允许的范围内并根据这些条款使用我们的服务。',
+            
+            // Cookie Policy - Chinese
+            'cookie.title': 'Cookie 政策',
+            'cookie.intro': '最后更新：2024年1月',
+            'cookie.section1.title': '什么是 Cookie',
+            'cookie.section1.text': 'Cookie 是当您访问我们的网站时放置在您设备上的小文本文件。',
+            'cookie.section2.title': '我们如何使用 Cookie',
+            'cookie.section2.text': '我们使用 Cookie 来改善您的体验，分析网站流量并个性化内容。',
+            
+            // Compliance - Chinese
+            'compliance.title': '合规性',
+            'compliance.certifications.title': '我们的认证',
+            'compliance.soc2.description': '安全性、可用性和机密性的年度审计',
+            'compliance.iso.description': '信息安全管理系统认证',
+            'compliance.gdpr.description': '完全符合欧盟数据保护法规'
         }
     };
     
