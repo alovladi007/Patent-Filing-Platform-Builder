@@ -95,15 +95,79 @@
             'footer.terms': 'Terms of Service',
             'footer.cookiePolicy': 'Cookie Policy',
             'footer.compliance': 'Compliance',
-            'footer.copyright': '© 2024 LUMA IP. All rights reserved. Patent pending.'
+            'footer.copyright': '© 2024 LUMA IP. All rights reserved. Patent pending.',
+            
+            // Product Page
+            'product.hero.title': 'The Complete Patent Platform',
+            'product.hero.description': 'LUMA IP combines cutting-edge AI with legal expertise to streamline every aspect of patent filing, from initial drafting to final prosecution.',
+            'product.platform.title': 'End-to-End Patent Management',
+            'product.platform.description': 'Our platform handles every stage of the patent lifecycle, from invention disclosure to granted patent maintenance.',
+            'product.platform.feature1.title': 'AI-Powered Drafting',
+            'product.platform.feature1.description': 'Generate complete patent applications in minutes',
+            'product.platform.feature2.title': 'Smart Prior Art Search',
+            'product.platform.feature2.description': 'AI-powered semantic search across global databases',
+            'product.platform.feature3.title': 'Automated Workflows',
+            'product.platform.feature3.description': 'Streamline filing with intelligent automation',
+            'product.components.title': 'Key Components',
+            'product.components.ai.title': 'AI Engine',
+            'product.components.ai.description': 'Advanced language models trained on millions of patents for accurate claim generation',
+            'product.components.database.title': 'Patent Database',
+            'product.components.database.description': 'Access to global patent databases with real-time updates and comprehensive coverage',
+            'product.components.compliance.title': 'Compliance Tools',
+            'product.components.compliance.description': 'Built-in compliance checks and USPTO form generation with validation',
+            
+            // Security Page
+            'security.hero.title': 'Security First, Always',
+            'security.hero.description': 'Your intellectual property is protected by enterprise-grade security, compliance certifications, and industry best practices.',
+            'security.features.title': 'Security Features',
+            'security.encryption.title': 'End-to-End Encryption',
+            'security.encryption.description': 'All data is encrypted at rest with AES-256 and in transit with TLS 1.3',
+            'security.access.title': 'Access Control',
+            'security.access.description': 'Role-based access control with multi-factor authentication and SSO support',
+            'security.audit.title': 'Audit Logging',
+            'security.audit.description': 'Complete audit trail of all actions with tamper-proof logging',
+            'security.infrastructure.title': 'Secure Infrastructure',
+            'security.infrastructure.description': 'Hosted on SOC 2 compliant infrastructure with 99.99% uptime SLA',
+            'security.threat.title': 'Threat Protection',
+            'security.threat.description': 'Real-time threat detection with DDoS protection and WAF',
+            'security.backup.title': 'Data Backup',
+            'security.backup.description': 'Automated daily backups with point-in-time recovery',
+            'security.compliance.title': 'Compliance & Certifications',
+            'security.soc2': 'Certified compliant',
+            'security.iso': 'Certified',
+            'security.gdpr': 'Compliant',
+            'security.ccpa': 'Compliant',
+            
+            // API Page
+            'api.hero.title': 'Developer API',
+            'api.hero.description': 'Integrate LUMA IP\'s patent automation capabilities into your applications with our RESTful API.',
+            'api.endpoints.title': 'API Endpoints',
+            
+            // About Page
+            'about.hero.title': 'About LUMA IP',
+            'about.hero.description': 'We\'re on a mission to democratize patent filing and make intellectual property protection accessible to all innovators.',
+            'about.mission.title': 'Our Mission',
+            'about.mission.text': 'LUMA IP was founded with the belief that protecting innovation shouldn\'t be complicated or expensive. We combine cutting-edge AI technology with legal expertise to streamline the patent process.',
+            
+            // Contact Page
+            'contact.hero.title': 'Get in Touch',
+            'contact.hero.description': 'We\'re here to help with your patent needs',
+            'contact.name': 'Name',
+            'contact.email': 'Email',
+            'contact.subject': 'Subject',
+            'contact.message': 'Message',
+            'contact.send': 'Send Message'
         },
         
         fr: {
             // Navigation
+            'nav.product': 'Produit',
             'nav.features': 'Fonctionnalités',
             'nav.howItWorks': 'Comment ça Marche',
             'nav.demo': 'Démo',
             'nav.pricing': 'Tarifs',
+            'nav.security': 'Sécurité',
+            'nav.api': 'API',
             'nav.signIn': 'Se Connecter',
             'nav.getStarted': 'Commencer',
             
@@ -180,6 +244,7 @@
             'footer.about': 'À Propos',
             'footer.blog': 'Blog',
             'footer.careers': 'Carrières',
+            'footer.contact': 'Contact',
             'footer.legal': 'Juridique',
             'footer.privacy': 'Politique de Confidentialité',
             'footer.terms': 'Conditions d\'Utilisation',
@@ -190,10 +255,13 @@
         
         es: {
             // Navigation
+            'nav.product': 'Producto',
             'nav.features': 'Características',
             'nav.howItWorks': 'Cómo Funciona',
             'nav.demo': 'Demo',
             'nav.pricing': 'Precios',
+            'nav.security': 'Seguridad',
+            'nav.api': 'API',
             'nav.signIn': 'Iniciar Sesión',
             'nav.getStarted': 'Comenzar',
             
@@ -280,10 +348,13 @@
         
         zh: {
             // Navigation
+            'nav.product': '产品',
             'nav.features': '功能',
             'nav.howItWorks': '工作原理',
             'nav.demo': '演示',
             'nav.pricing': '价格',
+            'nav.security': '安全',
+            'nav.api': 'API',
             'nav.signIn': '登录',
             'nav.getStarted': '开始使用',
             
