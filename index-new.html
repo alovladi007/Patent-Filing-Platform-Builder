@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMA IP - Automated Patent Workspace</title>
+    <meta name="description" content="Draft, file, and prosecute patents visually with AI-powered tools">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/style-new.css">
+    
+    <!-- i18n Script -->
+    <script src="i18n-comprehensive.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__inner">
+            <div class="brand">
+                <div class="logo">⚖️</div>
+                <div class="brand__text">
+                    <div class="brand__title">LUMA IP</div>
+                    <div class="brand__subtitle" data-i18n="header.subtitle">Automated Patent Workspace</div>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="#features" data-i18n="nav.features">Features</a>
+                <a href="#visuals" data-i18n="nav.visuals">Visuals</a>
+                <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+                <a href="#contact" class="btn btn--outline" data-i18n="nav.contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero__inner">
+            <div class="hero__copy">
+                <h1 data-i18n="hero.title">Draft, file, and prosecute—<span class="accent">visually</span>.</h1>
+                <p data-i18n="hero.description">Bring a patent agent's toolkit into your browser: claim trees, prior-art radar, docket timelines, and a filing checklist that won't let you miss a detail.</p>
+                <div class="hero__cta">
+                    <a class="btn btn--primary" href="#demo" data-i18n="hero.openDemo">Open Live Demo</a>
+                    <a class="btn btn--ghost" href="#features" data-i18n="hero.exploreFeatures">Explore Features</a>
+                </div>
+                <ul class="hero__badges">
+                    <li data-i18n="hero.badge1">Secure Workspace</li>
+                    <li data-i18n="hero.badge2">USPTO-ready Outputs</li>
+                    <li data-i18n="hero.badge3">Visual Analytics</li>
+                </ul>
+            </div>
+            <div class="hero__art">
+                <div class="glass">
+                    <div class="art__title" data-i18n="hero.claimTreeTitle">Claim Tree</div>
+                    <svg viewBox="0 0 520 280" class="tree">
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#32507a"></path>
+                            </marker>
+                        </defs>
+                        <rect x="190" y="20" rx="8" ry="8" width="140" height="40" class="node"/>
+                        <text x="260" y="46" text-anchor="middle" class="node__text">Claim 1</text>
+                        <line x1="260" y1="60" x2="140" y2="110" marker-end="url(#arrow)" class="edge"/>
+                        <line x1="260" y1="60" x2="380" y2="110" marker-end="url(#arrow)" class="edge"/>
+                        <rect x="80" y="110" rx="8" ry="8" width="120" height="40" class="node"/>
+                        <text x="140" y="136" text-anchor="middle" class="node__text">Claim 2</text>
+                        <rect x="320" y="110" rx="8" ry="8" width="120" height="40" class="node"/>
+                        <text x="380" y="136" text-anchor="middle" class="node__text">Claim 3</text>
+                        <line x1="140" y1="150" x2="100" y2="210" marker-end="url(#arrow)" class="edge"/>
+                        <rect x="60" y="210" rx="8" ry="8" width="80" height="40" class="node node--dep"/>
+                        <text x="100" y="236" text-anchor="middle" class="node__text">C4</text>
+                        <line x1="380" y1="150" x2="420" y2="210" marker-end="url(#arrow)" class="edge"/>
+                        <rect x="380" y="210" rx="8" ry="8" width="80" height="40" class="node node--dep"/>
+                        <text x="420" y="236" text-anchor="middle" class="node__text">C5</text>
+                    </svg>
+                    <div class="legend">
+                        <span class="dot"></span> <span data-i18n="hero.supportOk">§112 support OK</span> &nbsp;&nbsp; 
+                        <span class="dot dot--warn"></span> <span data-i18n="hero.needsSupport">needs support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2 data-i18n="features.title">Signature features</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card__icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3 data-i18n="features.claimTree.title">Claim Tree</h3>
+                    <p data-i18n="features.claimTree.description">Interactive hierarchy with inheritance, support mapping, and §112/102/103 risk flags.</p>
+                </div>
+                <div class="card">
+                    <div class="card__icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 data-i18n="features.docketTimeline.title">Docket Timeline</h3>
+                    <p data-i18n="features.docketTimeline.description">Statutory deadline math with extensions, per-matter status, and ICS exports.</p>
+                </div>
+                <div class="card">
+                    <div class="card__icon">
+                        <i class="fas fa-radar"></i>
+                    </div>
+                    <h3 data-i18n="features.priorArtRadar.title">Prior-Art Radar</h3>
+                    <p data-i18n="features.priorArtRadar.description">Visual clusters by similarity, CPC classes, and assignee; jump into claim charts.</p>
+                </div>
+                <div class="card">
+                    <div class="card__icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 data-i18n="features.feeCalculator.title">Fee Calculator</h3>
+                    <p data-i18n="features.feeCalculator.description">Entity-aware cost estimation with claim/page counts and excess fees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visuals Section -->
+    <section id="visuals" class="section section--alt">
+        <div class="container visuals">
+            <div class="panel">
+                <h3 data-i18n="visuals.docketKanban">Docket Kanban</h3>
+                <div class="kanban">
+                    <div class="col">
+                        <div class="col__title" data-i18n="visuals.drafting">Drafting</div>
+                        <div class="ticket">
+                            <div class="ticket__title" data-i18n="visuals.ticket1">Utility — "Optical Coupler"</div>
+                            <div class="chips">
+                                <span class="chip">D-12</span><span class="chip chip--blue">US</span>
+                            </div>
+                        </div>
+                        <div class="ticket">
+                            <div class="ticket__title" data-i18n="visuals.ticket2">Provisional — "Memristor Grid"</div>
+                            <div class="chips">
+                                <span class="chip chip--amber">D-3</span><span class="chip chip--blue">US</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="col__title" data-i18n="visuals.review">Review</div>
+                        <div class="ticket">
+                            <div class="ticket__title" data-i18n="visuals.ticket3">Design — "Device Housing"</div>
+                            <div class="chips">
+                                <span class="chip chip--green">OK</span><span class="chip chip--blue">US</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="col__title" data-i18n="visuals.filed">Filed</div>
+                        <div class="ticket">
+                            <div class="ticket__title" data-i18n="visuals.ticket4">PCT — "Optical Router"</div>
+                            <div class="chips">
+                                <span class="chip chip--purple">PCT</span><span class="chip chip--blue">IB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <h3 data-i18n="visuals.feeEstimate">Fee Estimate</h3>
+                <form id="fee-form" class="fee">
+                    <label><span data-i18n="visuals.entity">Entity</span>
+                        <select id="entity">
+                            <option value="micro" data-i18n="visuals.micro">Micro</option>
+                            <option value="small" selected data-i18n="visuals.small">Small</option>
+                            <option value="large" data-i18n="visuals.large">Large</option>
+                        </select>
+                    </label>
+                    <label><span data-i18n="visuals.claimsTotal">Claims (total)</span><input id="claims" type="number" value="20" min="1"/></label>
+                    <label><span data-i18n="visuals.independentClaims">Independent Claims</span><input id="indClaims" type="number" value="3" min="1"/></label>
+                    <label><span data-i18n="visuals.pages">Pages</span><input id="pages" type="number" value="25" min="1"/></label>
+                    <button class="btn btn--primary" type="button" onclick="calc()" data-i18n="visuals.estimate">Estimate</button>
+                    <div id="result" class="result"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <h2 data-i18n="pricing.title">Pricing</h2>
+            <div class="pricing">
+                <div class="pricecard">
+                    <h3 data-i18n="pricing.selfServe.title">Self-Serve</h3>
+                    <p class="price">$99<span data-i18n="pricing.perMatter">/matter</span></p>
+                    <ul>
+                        <li data-i18n="pricing.selfServe.feature1">Drafting workspace</li>
+                        <li data-i18n="pricing.selfServe.feature2">Filing checklist</li>
+                        <li data-i18n="pricing.selfServe.feature3">Fee estimates</li>
+                    </ul>
+                    <a class="btn btn--outline" href="#contact" data-i18n="pricing.getStarted">Get Started</a>
+                </div>
+                <div class="pricecard pricecard--pro">
+                    <h3 data-i18n="pricing.assisted.title">Assisted</h3>
+                    <p class="price">$499<span data-i18n="pricing.perMatter">/matter</span></p>
+                    <ul>
+                        <li data-i18n="pricing.assisted.feature1">Everything in Self-Serve</li>
+                        <li data-i18n="pricing.assisted.feature2">Prior-art radar + report</li>
+                        <li data-i18n="pricing.assisted.feature3">Claim tree review</li>
+                    </ul>
+                    <a class="btn btn--primary" href="#contact" data-i18n="pricing.talkToUs">Talk to Us</a>
+                </div>
+                <div class="pricecard">
+                    <h3 data-i18n="pricing.fullService.title">Full Service</h3>
+                    <p class="price" data-i18n="pricing.custom">Custom</p>
+                    <ul>
+                        <li data-i18n="pricing.fullService.feature1">Prosecution support</li>
+                        <li data-i18n="pricing.fullService.feature2">Portfolio analytics</li>
+                        <li data-i18n="pricing.fullService.feature3">SLAs & compliance</li>
+                    </ul>
+                    <a class="btn btn--outline" href="#contact" data-i18n="pricing.bookCall">Book a Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container footer__inner">
+            <div>
+                <div class="brand brand--footer">
+                    <div class="logo">⚖️</div>
+                    <div class="brand__text">
+                        <div class="brand__title">LUMA IP</div>
+                        <div class="brand__subtitle" data-i18n="footer.tagline">Patent agent in your browser</div>
+                    </div>
+                </div>
+                <p class="fine">© <span id="year"></span> LUMA IP Solutions. <span data-i18n="footer.confidential">Confidential & secure by design.</span></p>
+            </div>
+            <form class="contact">
+                <label><span data-i18n="contact.yourEmail">Your email</span> <input type="email" placeholder="you@company.com" required/></label>
+                <label><span data-i18n="contact.yourMessage">Your message</span> <textarea placeholder="Tell us about your invention..." data-i18n-placeholder="contact.messagePlaceholder"></textarea></label>
+                <button class="btn btn--primary" type="submit" data-i18n="contact.send">Send</button>
+            </form>
+        </div>
+    </footer>
+
+    <script src="assets/script-new.js"></script>
+</body>
+</html>

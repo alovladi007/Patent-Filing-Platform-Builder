@@ -1,4 +1,4 @@
-// i18n implementation with dropdown in navigation bar
+// Simple and reliable i18n implementation
 (function() {
     'use strict';
     
@@ -364,13 +364,6 @@
         }
     };
     
-    const languages = {
-        en: { name: 'English', flag: '🇺🇸' },
-        es: { name: 'Español', flag: '🇪🇸' },
-        fr: { name: 'Français', flag: '🇫🇷' },
-        zh: { name: '中文', flag: '🇨🇳' }
-    };
-    
     let currentLang = 'en';
     
     // Function to translate a single element
@@ -409,111 +402,62 @@
         currentLang = lang;
         localStorage.setItem('language', lang);
         translatePage();
-        updateDropdownDisplay();
+        updateLanguageSwitcher();
     }
     
-    // Update dropdown display
-    function updateDropdownDisplay() {
-        const dropdownButton = document.getElementById('language-dropdown-button');
-        if (dropdownButton) {
-            const lang = languages[currentLang];
-            dropdownButton.innerHTML = `
-                <span style="font-size: 20px; margin-right: 6px;">${lang.flag}</span>
-                <span class="hidden sm:inline">${lang.name}</span>
-                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-            `;
-        }
-    }
-    
-    // Create language dropdown in navigation
-    function createLanguageDropdown() {
-        // Wait a bit to ensure the DOM is ready
-        setTimeout(() => {
-            // Find the navigation bar buttons container
-            const navButtons = document.querySelector('nav .flex.items-center.space-x-4');
-            
-            if (!navButtons) {
-                console.error('Navigation buttons container not found');
-                return;
-            }
-            
-            // Create dropdown container
-            const dropdownContainer = document.createElement('div');
-            dropdownContainer.className = 'relative';
-            dropdownContainer.innerHTML = `
-                <button 
-                    id="language-dropdown-button"
-                    onclick="toggleLanguageDropdown()"
-                    class="flex items-center px-3 py-2 text-gray-700 hover:text-purple-700 font-medium transition"
-                    style="min-width: 120px;"
-                >
-                    <span style="font-size: 20px; margin-right: 6px;">${languages[currentLang].flag}</span>
-                    <span class="hidden sm:inline">${languages[currentLang].name}</span>
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                
-                <div 
-                    id="language-dropdown-menu"
-                    class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 hidden z-50"
-                >
-                    ${Object.entries(languages).map(([code, lang]) => `
-                        <button
-                            onclick="changeLanguage('${code}'); toggleLanguageDropdown();"
-                            class="w-full flex items-center px-4 py-3 hover:bg-purple-50 transition ${code === currentLang ? 'bg-purple-50' : ''}"
-                            style="text-align: left;"
-                        >
-                            <span style="font-size: 20px; margin-right: 10px;">${lang.flag}</span>
-                            <span class="text-gray-700 font-medium">${lang.name}</span>
-                            ${code === currentLang ? '<svg class="w-4 h-4 ml-auto text-purple-700" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>' : ''}
-                        </button>
-                    `).join('')}
-                </div>
-            `;
-            
-            // Insert before the first button in the nav
-            navButtons.insertBefore(dropdownContainer, navButtons.firstChild);
-            
-            // Add styles for the dropdown
-            const style = document.createElement('style');
-            style.textContent = `
-                #language-dropdown-menu button:first-child {
-                    border-top-left-radius: 0.5rem;
-                    border-top-right-radius: 0.5rem;
-                }
-                #language-dropdown-menu button:last-child {
-                    border-bottom-left-radius: 0.5rem;
-                    border-bottom-right-radius: 0.5rem;
-                }
-                #language-dropdown-button:focus {
-                    outline: none;
-                    box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
-                }
-            `;
-            document.head.appendChild(style);
-        }, 100);
-    }
-    
-    // Toggle dropdown visibility
-    window.toggleLanguageDropdown = function() {
-        const menu = document.getElementById('language-dropdown-menu');
-        if (menu) {
-            menu.classList.toggle('hidden');
-        }
-    }
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-        const dropdown = document.getElementById('language-dropdown-menu');
-        const button = document.getElementById('language-dropdown-button');
+    // Create language switcher
+    function createLanguageSwitcher() {
+        const languages = {
+            en: { name: 'English', flag: '🇺🇸' },
+            es: { name: 'Español', flag: '🇪🇸' },
+            fr: { name: 'Français', flag: '🇫🇷' },
+            zh: { name: '中文', flag: '🇨🇳' }
+        };
         
-        if (dropdown && button && !button.contains(event.target) && !dropdown.contains(event.target)) {
-            dropdown.classList.add('hidden');
+        const switcher = document.createElement('div');
+        switcher.id = 'language-switcher';
+        switcher.style.cssText = 'position: fixed; top: 80px; right: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 8px; z-index: 9999;';
+        
+        let html = '<div style="display: flex; flex-direction: column; gap: 4px;">';
+        for (const [code, lang] of Object.entries(languages)) {
+            const isActive = code === currentLang;
+            html += `
+                <button 
+                    onclick="changeLanguage('${code}')" 
+                    class="lang-btn-${code}"
+                    style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: none; background: ${isActive ? '#f0f0ff' : 'white'}; color: ${isActive ? '#6366f1' : '#333'}; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: ${isActive ? '600' : '400'}; transition: all 0.2s;"
+                    onmouseover="this.style.background='#f0f0ff'" 
+                    onmouseout="this.style.background='${isActive ? '#f0f0ff' : 'white'}'"
+                >
+                    <span style="font-size: 20px;">${lang.flag}</span>
+                    <span>${lang.name}</span>
+                </button>
+            `;
         }
-    });
+        html += '</div>';
+        
+        switcher.innerHTML = html;
+        
+        // Remove existing switcher if present
+        const existing = document.getElementById('language-switcher');
+        if (existing) existing.remove();
+        
+        document.body.appendChild(switcher);
+    }
+    
+    // Update language switcher UI
+    function updateLanguageSwitcher() {
+        const languages = ['en', 'es', 'fr', 'zh'];
+        languages.forEach(lang => {
+            const btn = document.querySelector(`.lang-btn-${lang}`);
+            if (btn) {
+                const isActive = lang === currentLang;
+                btn.style.background = isActive ? '#f0f0ff' : 'white';
+                btn.style.color = isActive ? '#6366f1' : '#333';
+                btn.style.fontWeight = isActive ? '600' : '400';
+            }
+        });
+    }
     
     // Initialize
     function init() {
@@ -530,8 +474,8 @@
         // Translate page
         translatePage();
         
-        // Create language dropdown
-        createLanguageDropdown();
+        // Create language switcher
+        createLanguageSwitcher();
         
         console.log('i18n initialized with language:', currentLang);
     }
@@ -546,5 +490,20 @@
     
     // Make changeLanguage function globally available
     window.changeLanguage = changeLanguage;
+    
+    // Test function for debugging
+    window.testTranslation = function() {
+        console.log('Current language:', currentLang);
+        console.log('Elements with data-i18n:', document.querySelectorAll('[data-i18n]').length);
+        console.log('Sample translations:');
+        console.log('- hero.title:', translations[currentLang]['hero.title']);
+        console.log('- hero.watchDemo:', translations[currentLang]['hero.watchDemo']);
+        changeLanguage('fr');
+        setTimeout(() => {
+            console.log('After changing to French:');
+            console.log('- hero.title:', translations[currentLang]['hero.title']);
+            console.log('- hero.watchDemo:', translations[currentLang]['hero.watchDemo']);
+        }, 500);
+    };
     
 })();
