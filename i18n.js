@@ -600,15 +600,22 @@ const i18n = {
     
     // Initialize i18n
     init() {
+        console.log('i18n.init() called');
+        
         // Get saved language from localStorage or browser language
         const savedLang = localStorage.getItem('language');
         const browserLang = navigator.language.substring(0, 2);
+        
+        console.log('Saved language:', savedLang);
+        console.log('Browser language:', browserLang);
         
         if (savedLang && this.translations[savedLang]) {
             this.currentLang = savedLang;
         } else if (this.translations[browserLang]) {
             this.currentLang = browserLang;
         }
+        
+        console.log('Current language set to:', this.currentLang);
         
         // Apply translations
         this.updatePage();
@@ -635,17 +642,56 @@ const i18n = {
     
     // Update page with translations
     updatePage() {
+        console.log('Updating page with language:', this.currentLang);
+        
+        // Make sure translations are loaded
+        if (!this.translations || !this.translations[this.currentLang]) {
+            console.error('Translations not loaded for language:', this.currentLang);
+            return;
+        }
+        
         // Update all elements with data-i18n attribute
-        document.querySelectorAll('[data-i18n]').forEach(element => {
+        const elements = document.querySelectorAll('[data-i18n]');
+        console.log('Found elements with data-i18n:', elements.length);
+        
+        let translatedCount = 0;
+        elements.forEach(element => {
             const key = element.getAttribute('data-i18n');
             const translation = this.t(key);
             
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = translation;
+            if (translation && translation !== key) {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = translation;
+                } else {
+                    // For elements with child nodes (like icons), we need to be careful
+                    if (element.children.length > 0) {
+                        // Find text nodes and update them
+                        const walker = document.createTreeWalker(
+                            element,
+                            NodeFilter.SHOW_TEXT,
+                            null,
+                            false
+                        );
+                        let node;
+                        while (node = walker.nextNode()) {
+                            if (node.nodeValue && node.nodeValue.trim()) {
+                                node.nodeValue = translation;
+                                break; // Only update the first text node
+                            }
+                        }
+                    } else {
+                        // Simple text replacement for elements without children
+                        element.textContent = translation;
+                    }
+                }
+                translatedCount++;
+                console.log(`Translated "${key}" to "${translation}"`);
             } else {
-                element.textContent = translation;
+                console.warn(`No translation found for key: ${key}`);
             }
         });
+        
+        console.log(`Successfully translated ${translatedCount} elements`);
         
         // Update HTML lang attribute
         document.documentElement.lang = this.currentLang;
@@ -692,13 +738,47 @@ const i18n = {
 };
 
 // Initialize when DOM is ready
+console.log('i18n.js loaded, document.readyState:', document.readyState);
+
+// Since we're using defer, the DOM should be ready when this runs
+// But let's be extra safe
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => i18n.init());
+    console.log('Document still loading, waiting for DOMContentLoaded');
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOMContentLoaded fired, initializing i18n');
+        i18n.init();
+    });
 } else {
-    i18n.init();
+    // Document is already ready (interactive or complete)
+    console.log('Document ready, initializing i18n immediately');
+    // Small delay to ensure all elements are rendered
+    setTimeout(() => {
+        i18n.init();
+    }, 10);
 }
+
+// Also try initializing on window load as a fallback
+window.addEventListener('load', () => {
+    console.log('Window load event fired');
+    if (!document.getElementById('language-switcher')) {
+        console.log('Language switcher not found, initializing i18n again');
+        i18n.init();
+    }
+});
 
 // Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = i18n;
 }
+
+// Make i18n globally available
+window.i18n = i18n;
+
+// Add a manual test function
+window.testI18n = function(lang) {
+    console.log('Testing i18n with language:', lang || 'fr');
+    i18n.changeLanguage(lang || 'fr');
+    console.log('Current language after change:', i18n.currentLang);
+    console.log('Sample translation - hero.title:', i18n.t('hero.title'));
+    console.log('Sample translation - hero.watchDemo:', i18n.t('hero.watchDemo'));
+};
