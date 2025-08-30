@@ -3,618 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUMA IP - Legal Utility for Machine Assisted IP Analysis</title>
-    <meta name="description" content="Advanced AI-powered patent filing and management system">
+    <title>LUMA IP - Automated Patent Workspace</title>
+    <meta name="description" content="Draft, file, and prosecute patents visually with AI-powered tools">
     
-    <!-- TailwindCSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/style-new.css">
+    
     <!-- i18n Script -->
     <script src="i18n-dropdown.js" defer></script>
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        .gradient-hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .fade-in { animation: fadeIn 0.8s ease-in; }
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        .hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .hover-scale:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .section-fade { opacity: 0; animation: sectionFadeIn 1s ease-out forwards; }
-        @keyframes sectionFadeIn {
-            to { opacity: 1; }
-        }
-        .typing-effect {
-            overflow: hidden;
-            border-right: .15em solid #667eea;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #667eea; }
-        }
-    </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <span class="text-2xl mr-2">⚖️</span>
-                    <span class="text-xl font-bold text-purple-700">LUMA IP</span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-700 hover:text-purple-700 transition" data-i18n="nav.features">Features</a>
-                    <a href="#workflow" class="text-gray-700 hover:text-purple-700 transition" data-i18n="nav.howItWorks">How It Works</a>
-                    <a href="#demo" class="text-gray-700 hover:text-purple-700 transition" data-i18n="nav.demo">Demo</a>
-                    <a href="#pricing" class="text-gray-700 hover:text-purple-700 transition" data-i18n="nav.pricing">Pricing</a>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button onclick="showDemo()" class="px-4 py-2 text-purple-700 hover:text-purple-800 font-medium" data-i18n="nav.signIn">
-                        Sign In
-                    </button>
-                    <button onclick="showDemo()" class="px-4 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition" data-i18n="nav.getStarted">
-                        Get Started
-                    </button>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__inner">
+            <div class="brand">
+                <div class="logo">⚖️</div>
+                <div class="brand__text">
+                    <div class="brand__title">LUMA IP</div>
+                    <div class="brand__subtitle" data-i18n="header.subtitle">Automated Patent Workspace</div>
                 </div>
             </div>
+            <nav class="nav">
+                <a href="#features" data-i18n="nav.features">Features</a>
+                <a href="#visuals" data-i18n="nav.visuals">Visuals</a>
+                <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+                <a href="#contact" class="btn btn--outline" data-i18n="nav.contact">Contact</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="gradient-hero text-white pt-32 pb-20 px-4">
-        <div class="max-w-7xl mx-auto text-center fade-in">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4">
-                LUMA IP
-            </h1>
-            <p class="text-2xl md:text-3xl mb-2 text-purple-100" data-i18n="hero.title">
-                Legal Utility for Machine Assisted IP Analysis
-            </p>
-            <p class="text-xl mb-8 text-purple-200 max-w-3xl mx-auto" data-i18n="hero.subtitle">
-                Transform your patent filing process with advanced AI. Generate complete patent applications 
-                in minutes, not months. Powered by state-of-the-art language models.
-            </p>
-            <div class="flex justify-center space-x-4">
-                <button onclick="showDemo()" class="px-8 py-4 bg-white text-purple-700 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105">
-                    <i class="fas fa-play mr-2"></i> <span data-i18n="hero.watchDemo">Watch Demo</span>
-                </button>
-                <button onclick="showFilingWorkflow()" class="px-8 py-4 bg-purple-800 text-white rounded-lg font-semibold hover:bg-purple-900 transition transform hover:scale-105">
-                    <i class="fas fa-rocket mr-2"></i> <span data-i18n="hero.startFiling">Start Filing</span>
-                </button>
+    <section class="hero">
+        <div class="container hero__inner">
+            <div class="hero__copy">
+                <h1 data-i18n="hero.title">Draft, file, and prosecute—<span class="accent">visually</span>.</h1>
+                <p data-i18n="hero.description">Bring a patent agent's toolkit into your browser: claim trees, prior-art radar, docket timelines, and a filing checklist that won't let you miss a detail.</p>
+                <div class="hero__cta">
+                    <a class="btn btn--primary" href="#demo" data-i18n="hero.openDemo">Open Live Demo</a>
+                    <a class="btn btn--ghost" href="#features" data-i18n="hero.exploreFeatures">Explore Features</a>
+                </div>
+                <ul class="hero__badges">
+                    <li data-i18n="hero.badge1">Secure Workspace</li>
+                    <li data-i18n="hero.badge2">USPTO-ready Outputs</li>
+                    <li data-i18n="hero.badge3">Visual Analytics</li>
+                </ul>
             </div>
-        </div>
-    </section>
-
-    <!-- Stats Bar -->
-    <section class="bg-purple-700 text-white py-8">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <p class="text-3xl font-bold">10,000+</p>
-                    <p class="text-purple-200" data-i18n="stats.patentsFiled">Patents Filed</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-bold">87%</p>
-                    <p class="text-purple-200" data-i18n="stats.grantRate">Grant Rate</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-bold">60%</p>
-                    <p class="text-purple-200" data-i18n="stats.timeSaved">Time Saved</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-bold">500+</p>
-                    <p class="text-purple-200" data-i18n="stats.lawFirms">Law Firms</p>
+            <div class="hero__art">
+                <div class="glass">
+                    <div class="art__title" data-i18n="hero.claimTreeTitle">Claim Tree</div>
+                    <svg viewBox="0 0 520 280" class="tree">
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#32507a"></path>
+                            </marker>
+                        </defs>
+                        <rect x="190" y="20" rx="8" ry="8" width="140" height="40" class="node"/>
+                        <text x="260" y="46" text-anchor="middle" class="node__text">Claim 1</text>
+                        <line x1="260" y1="60" x2="140" y2="110" marker-end="url(#arrow)" class="edge"/>
+                        <line x1="260" y1="60" x2="380" y2="110" marker-end="url(#arrow)" class="edge"/>
+                        <rect x="80" y="110" rx="8" ry="8" width="120" height="40" class="node"/>
+                        <text x="140" y="136" text-anchor="middle" class="node__text">Claim 2</text>
+                        <rect x="320" y="110" rx="8" ry="8" width="120" height="40" class="node"/>
+                        <text x="380" y="136" text-anchor="middle" class="node__text">Claim 3</text>
+                        <line x1="140" y1="150" x2="100" y2="210" marker-end="url(#arrow)" class="edge"/>
+                        <rect x="60" y="210" rx="8" ry="8" width="80" height="40" class="node node--dep"/>
+                        <text x="100" y="236" text-anchor="middle" class="node__text">C4</text>
+                        <line x1="380" y1="150" x2="420" y2="210" marker-end="url(#arrow)" class="edge"/>
+                        <rect x="380" y="210" rx="8" ry="8" width="80" height="40" class="node node--dep"/>
+                        <text x="420" y="236" text-anchor="middle" class="node__text">C5</text>
+                    </svg>
+                    <div class="legend">
+                        <span class="dot"></span> <span data-i18n="hero.supportOk">§112 support OK</span> &nbsp;&nbsp; 
+                        <span class="dot dot--warn"></span> <span data-i18n="hero.needsSupport">needs support</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 section-fade">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-i18n="features.title">
-                    Everything You Need for Patent Filing
-                </h2>
-                <p class="text-xl text-gray-600" data-i18n="features.subtitle">
-                    A complete platform that handles the entire patent lifecycle
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature Cards -->
-                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-robot text-purple-700 text-xl"></i>
+    <section id="features" class="section">
+        <div class="container">
+            <h2 data-i18n="features.title">Signature features</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card__icon">
+                        <i class="fas fa-sitemap"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2" data-i18n="features.aiDrafting.title">AI-Powered Drafting</h3>
-                    <p class="text-gray-600" data-i18n="features.aiDrafting.description">Generate patent claims and specifications using GPT-4 trained on millions of patents</p>
+                    <h3 data-i18n="features.claimTree.title">Claim Tree</h3>
+                    <p data-i18n="features.claimTree.description">Interactive hierarchy with inheritance, support mapping, and §112/102/103 risk flags.</p>
                 </div>
-
-                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-file-alt text-purple-700 text-xl"></i>
+                <div class="card">
+                    <div class="card__icon">
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2" data-i18n="features.usptoForms.title">USPTO Form Generation</h3>
-                    <p class="text-gray-600" data-i18n="features.usptoForms.description">Automatically create ADS, IDS, and other USPTO forms with validated data</p>
+                    <h3 data-i18n="features.docketTimeline.title">Docket Timeline</h3>
+                    <p data-i18n="features.docketTimeline.description">Statutory deadline math with extensions, per-matter status, and ICS exports.</p>
                 </div>
-
-                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-search text-purple-700 text-xl"></i>
+                <div class="card">
+                    <div class="card__icon">
+                        <i class="fas fa-radar"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2" data-i18n="features.priorArt.title">Prior Art Search</h3>
-                    <p class="text-gray-600" data-i18n="features.priorArt.description">Vector-based semantic search through global patent databases</p>
+                    <h3 data-i18n="features.priorArtRadar.title">Prior-Art Radar</h3>
+                    <p data-i18n="features.priorArtRadar.description">Visual clusters by similarity, CPC classes, and assignee; jump into claim charts.</p>
                 </div>
-
-                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-calendar-check text-purple-700 text-xl"></i>
+                <div class="card">
+                    <div class="card__icon">
+                        <i class="fas fa-calculator"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2" data-i18n="features.docket.title">Docket Management</h3>
-                    <p class="text-gray-600" data-i18n="features.docket.description">Never miss a deadline with automated tracking and reminders</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-users text-purple-700 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2" data-i18n="features.teamCollab.title">Team Collaboration</h3>
-                    <p class="text-gray-600" data-i18n="features.teamCollab.description">Work together with role-based access control and real-time updates</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-shield-alt text-purple-700 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2" data-i18n="features.enterpriseSec.title">Enterprise Security</h3>
-                    <p class="text-gray-600" data-i18n="features.enterpriseSec.description">Bank-level encryption, SOC 2 compliance, and audit trails</p>
+                    <h3 data-i18n="features.feeCalculator.title">Fee Calculator</h3>
+                    <p data-i18n="features.feeCalculator.description">Entity-aware cost estimation with claim/page counts and excess fees.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Workflow Section -->
-    <section id="workflow" class="py-20 px-4 bg-gray-100">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-i18n="workflow.title">
-                    Simple 5-Step Process
-                </h2>
-                <p class="text-xl text-gray-600" data-i18n="workflow.subtitle">
-                    From idea to filed patent in record time
-                </p>
-            </div>
-
-            <div class="max-w-4xl mx-auto">
-                <div class="space-y-8">
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-12 h-12 bg-purple-700 text-white rounded-full flex items-center justify-center font-bold">
-                            1
+    <!-- Visuals Section -->
+    <section id="visuals" class="section section--alt">
+        <div class="container visuals">
+            <div class="panel">
+                <h3 data-i18n="visuals.docketKanban">Docket Kanban</h3>
+                <div class="kanban">
+                    <div class="col">
+                        <div class="col__title" data-i18n="visuals.drafting">Drafting</div>
+                        <div class="ticket">
+                            <div class="ticket__title" data-i18n="visuals.ticket1">Utility — "Optical Coupler"</div>
+                            <div class="chips">
+                                <span class="chip">D-12</span><span class="chip chip--blue">US</span>
+                            </div>
                         </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-semibold mb-1" data-i18n="workflow.step1.title">Describe Your Invention</h3>
-                            <p class="text-gray-600" data-i18n="workflow.step1.description">Input your invention details and technical specifications</p>
+                        <div class="ticket">
+                            <div class="ticket__title" data-i18n="visuals.ticket2">Provisional — "Memristor Grid"</div>
+                            <div class="chips">
+                                <span class="chip chip--amber">D-3</span><span class="chip chip--blue">US</span>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-12 h-12 bg-purple-700 text-white rounded-full flex items-center justify-center font-bold">
-                            2
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-semibold mb-1" data-i18n="workflow.step2.title">AI Generation</h3>
-                            <p class="text-gray-600" data-i18n="workflow.step2.description">Our LLM generates claims, specifications, and drawings</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-12 h-12 bg-purple-700 text-white rounded-full flex items-center justify-center font-bold">
-                            3
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-semibold mb-1" data-i18n="workflow.step3.title">Prior Art Analysis</h3>
-                            <p class="text-gray-600" data-i18n="workflow.step3.description">Automatic search and patentability scoring</p>
+                    <div class="col">
+                        <div class="col__title" data-i18n="visuals.review">Review</div>
+                        <div class="ticket">
+                            <div class="ticket__title" data-i18n="visuals.ticket3">Design — "Device Housing"</div>
+                            <div class="chips">
+                                <span class="chip chip--green">OK</span><span class="chip chip--blue">US</span>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-12 h-12 bg-purple-700 text-white rounded-full flex items-center justify-center font-bold">
-                            4
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-semibold mb-1" data-i18n="workflow.step4.title">Review & Edit</h3>
-                            <p class="text-gray-600" data-i18n="workflow.step4.description">Refine the generated documents with AI assistance</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-12 h-12 bg-purple-700 text-white rounded-full flex items-center justify-center font-bold">
-                            5
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-semibold mb-1" data-i18n="workflow.step5.title">File with USPTO</h3>
-                            <p class="text-gray-600" data-i18n="workflow.step5.description">Submit directly or export for traditional filing</p>
+                    <div class="col">
+                        <div class="col__title" data-i18n="visuals.filed">Filed</div>
+                        <div class="ticket">
+                            <div class="ticket__title" data-i18n="visuals.ticket4">PCT — "Optical Router"</div>
+                            <div class="chips">
+                                <span class="chip chip--purple">PCT</span><span class="chip chip--blue">IB</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="panel">
+                <h3 data-i18n="visuals.feeEstimate">Fee Estimate</h3>
+                <form id="fee-form" class="fee">
+                    <label><span data-i18n="visuals.entity">Entity</span>
+                        <select id="entity">
+                            <option value="micro" data-i18n="visuals.micro">Micro</option>
+                            <option value="small" selected data-i18n="visuals.small">Small</option>
+                            <option value="large" data-i18n="visuals.large">Large</option>
+                        </select>
+                    </label>
+                    <label><span data-i18n="visuals.claimsTotal">Claims (total)</span><input id="claims" type="number" value="20" min="1"/></label>
+                    <label><span data-i18n="visuals.independentClaims">Independent Claims</span><input id="indClaims" type="number" value="3" min="1"/></label>
+                    <label><span data-i18n="visuals.pages">Pages</span><input id="pages" type="number" value="25" min="1"/></label>
+                    <button class="btn btn--primary" type="button" onclick="calc()" data-i18n="visuals.estimate">Estimate</button>
+                    <div id="result" class="result"></div>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Demo Section -->
-    <section id="demo" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-i18n="demo.title">
-                    See LUMA IP in Action
-                </h2>
-                <p class="text-xl text-gray-600" data-i18n="demo.subtitle">
-                    Experience the power of AI-driven patent filing
-                </p>
-            </div>
-
-            <!-- Demo Interface -->
-            <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
-                <!-- Tab Navigation -->
-                <div class="bg-gray-100 p-4 flex space-x-4">
-                    <button onclick="showTab('dashboard')" class="tab-btn px-4 py-2 bg-white rounded-lg font-medium text-purple-700" data-i18n="demo.tabs.dashboard">
-                        Dashboard
-                    </button>
-                    <button onclick="showTab('filing')" class="tab-btn px-4 py-2 text-gray-600 hover:text-gray-900" data-i18n="demo.tabs.filing">
-                        New Filing
-                    </button>
-                    <button onclick="showTab('portfolio')" class="tab-btn px-4 py-2 text-gray-600 hover:text-gray-900" data-i18n="demo.tabs.portfolio">
-                        Portfolio
-                    </button>
-                    <button onclick="showTab('search')" class="tab-btn px-4 py-2 text-gray-600 hover:text-gray-900" data-i18n="demo.tabs.priorArt">
-                        Prior Art
-                    </button>
+    <!-- Pricing Section -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <h2 data-i18n="pricing.title">Pricing</h2>
+            <div class="pricing">
+                <div class="pricecard">
+                    <h3 data-i18n="pricing.selfServe.title">Self-Serve</h3>
+                    <p class="price">$99<span data-i18n="pricing.perMatter">/matter</span></p>
+                    <ul>
+                        <li data-i18n="pricing.selfServe.feature1">Drafting workspace</li>
+                        <li data-i18n="pricing.selfServe.feature2">Filing checklist</li>
+                        <li data-i18n="pricing.selfServe.feature3">Fee estimates</li>
+                    </ul>
+                    <a class="btn btn--outline" href="#contact" data-i18n="pricing.getStarted">Get Started</a>
                 </div>
-
-                <!-- Dashboard Tab -->
-                <div id="dashboard-tab" class="p-8">
-                    <h3 class="text-2xl font-bold mb-6" data-i18n="demo.dashboard.title">Patent Portfolio Dashboard</h3>
-                    
-                    <!-- Stats Grid -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                        <div class="bg-blue-50 p-4 rounded-lg">
-                            <p class="text-blue-600 text-sm font-medium" data-i18n="demo.dashboard.activePatents">Active Patents</p>
-                            <p class="text-2xl font-bold text-gray-900">247</p>
-                            <p class="text-xs text-gray-500">+12% from last month</p>
-                        </div>
-                        <div class="bg-yellow-50 p-4 rounded-lg">
-                            <p class="text-yellow-600 text-sm font-medium" data-i18n="demo.dashboard.pending">Pending</p>
-                            <p class="text-2xl font-bold text-gray-900">18</p>
-                            <p class="text-xs text-gray-500">5 require action</p>
-                        </div>
-                        <div class="bg-red-50 p-4 rounded-lg">
-                            <p class="text-red-600 text-sm font-medium" data-i18n="demo.dashboard.deadlines">Deadlines</p>
-                            <p class="text-2xl font-bold text-gray-900">5</p>
-                            <p class="text-xs text-gray-500">Next: March 15</p>
-                        </div>
-                        <div class="bg-green-50 p-4 rounded-lg">
-                            <p class="text-green-600 text-sm font-medium" data-i18n="demo.dashboard.portfolioValue">Portfolio Value</p>
-                            <p class="text-2xl font-bold text-gray-900">$24.5M</p>
-                            <p class="text-xs text-gray-500">+18% increase</p>
-                        </div>
-                    </div>
-
-                    <!-- Recent Activity -->
-                    <div class="bg-gray-50 rounded-lg p-6">
-                        <h4 class="font-semibold mb-4" data-i18n="demo.dashboard.recentActivity">Recent Activity</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <p class="font-medium">Office Action Response</p>
-                                    <p class="text-sm text-gray-500">US10,123,456 • 2 hours ago</p>
-                                </div>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Submitted</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <p class="font-medium">Claims Amended</p>
-                                    <p class="text-sm text-gray-500">EP3,234,567 • 5 hours ago</p>
-                                </div>
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">In Review</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <p class="font-medium">Prior Art Search</p>
-                                    <p class="text-sm text-gray-500">New Filing #42 • 1 day ago</p>
-                                </div>
-                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Completed</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="pricecard pricecard--pro">
+                    <h3 data-i18n="pricing.assisted.title">Assisted</h3>
+                    <p class="price">$499<span data-i18n="pricing.perMatter">/matter</span></p>
+                    <ul>
+                        <li data-i18n="pricing.assisted.feature1">Everything in Self-Serve</li>
+                        <li data-i18n="pricing.assisted.feature2">Prior-art radar + report</li>
+                        <li data-i18n="pricing.assisted.feature3">Claim tree review</li>
+                    </ul>
+                    <a class="btn btn--primary" href="#contact" data-i18n="pricing.talkToUs">Talk to Us</a>
                 </div>
-
-                <!-- Filing Tab (Hidden by default) -->
-                <div id="filing-tab" class="p-8 hidden">
-                    <h3 class="text-2xl font-bold mb-6">New Patent Filing</h3>
-                    
-                    <!-- Progress Steps -->
-                    <div class="flex justify-between mb-8">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-purple-700 text-white rounded-full flex items-center justify-center">1</div>
-                            <span class="ml-2 text-sm">Basic Info</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-gray-300 text-white rounded-full flex items-center justify-center">2</div>
-                            <span class="ml-2 text-sm text-gray-400">Technical</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-gray-300 text-white rounded-full flex items-center justify-center">3</div>
-                            <span class="ml-2 text-sm text-gray-400">Inventors</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-gray-300 text-white rounded-full flex items-center justify-center">4</div>
-                            <span class="ml-2 text-sm text-gray-400">AI Generate</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-gray-300 text-white rounded-full flex items-center justify-center">5</div>
-                            <span class="ml-2 text-sm text-gray-400">Review</span>
-                        </div>
-                    </div>
-
-                    <!-- Form -->
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Invention Title</label>
-                            <input type="text" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none" 
-                                   placeholder="Enter a descriptive title for your invention">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Technical Field</label>
-                                <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                                    <option>Software/AI</option>
-                                    <option>Biotechnology</option>
-                                    <option>Mechanical</option>
-                                    <option>Electrical</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Patent Type</label>
-                                <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                                    <option>Utility</option>
-                                    <option>Design</option>
-                                    <option>Plant</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Brief Description</label>
-                            <textarea class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none" 
-                                      rows="4" placeholder="Provide a brief overview of your invention"></textarea>
-                        </div>
-                        <button class="px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition">
-                            Next Step <i class="fas fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
+                <div class="pricecard">
+                    <h3 data-i18n="pricing.fullService.title">Full Service</h3>
+                    <p class="price" data-i18n="pricing.custom">Custom</p>
+                    <ul>
+                        <li data-i18n="pricing.fullService.feature1">Prosecution support</li>
+                        <li data-i18n="pricing.fullService.feature2">Portfolio analytics</li>
+                        <li data-i18n="pricing.fullService.feature3">SLAs & compliance</li>
+                    </ul>
+                    <a class="btn btn--outline" href="#contact" data-i18n="pricing.bookCall">Book a Call</a>
                 </div>
-
-                <!-- Portfolio Tab (Hidden) -->
-                <div id="portfolio-tab" class="p-8 hidden">
-                    <h3 class="text-2xl font-bold mb-6">Patent Portfolio</h3>
-                    <div class="space-y-4">
-                        <div class="border rounded-lg p-4 hover:shadow-lg transition">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h4 class="font-semibold">AI-Powered Medical Diagnosis System</h4>
-                                    <p class="text-sm text-gray-500">US10,123,456 • Filed: 2021-03-15</p>
-                                    <p class="text-sm text-gray-600 mt-2">An AI system for automated medical diagnosis using deep learning...</p>
-                                </div>
-                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Granted</span>
-                            </div>
-                            <div class="mt-4 flex space-x-4 text-sm">
-                                <span><i class="fas fa-dollar-sign text-green-600"></i> Value: $2.5M</span>
-                                <span><i class="fas fa-quote-right text-blue-600"></i> Citations: 47</span>
-                                <span><i class="fas fa-calendar text-yellow-600"></i> Maintenance: 2025-03-15</span>
-                            </div>
-                        </div>
-                        <div class="border rounded-lg p-4 hover:shadow-lg transition">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h4 class="font-semibold">Quantum Computing Algorithm for Optimization</h4>
-                                    <p class="text-sm text-gray-500">EP3,234,567 • Filed: 2022-07-10</p>
-                                    <p class="text-sm text-gray-600 mt-2">A quantum algorithm for solving complex optimization problems...</p>
-                                </div>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Published</span>
-                            </div>
-                            <div class="mt-4 flex space-x-4 text-sm">
-                                <span><i class="fas fa-dollar-sign text-green-600"></i> Value: $1.8M</span>
-                                <span><i class="fas fa-quote-right text-blue-600"></i> Citations: 23</span>
-                                <span><i class="fas fa-calendar text-yellow-600"></i> Maintenance: 2024-07-10</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Search Tab (Hidden) -->
-                <div id="search-tab" class="p-8 hidden">
-                    <h3 class="text-2xl font-bold mb-6">Prior Art Search</h3>
-                    <div class="mb-6">
-                        <div class="flex space-x-4">
-                            <input type="text" class="flex-1 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none" 
-                                   placeholder="Enter keywords, patent numbers, or technical descriptions...">
-                            <button class="px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition">
-                                <i class="fas fa-search mr-2"></i> Search
-                            </button>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="border rounded-lg p-4">
-                            <div class="flex justify-between">
-                                <div>
-                                    <h4 class="font-semibold">System and Method for Automated Data Processing</h4>
-                                    <p class="text-sm text-gray-500">US10,987,654 • 2019-03-15</p>
-                                    <p class="text-sm text-gray-600 mt-2">A system for processing data using machine learning algorithms...</p>
-                                </div>
-                                <div class="text-center">
-                                    <p class="text-2xl font-bold text-purple-700">92%</p>
-                                    <p class="text-xs text-gray-500">Relevance</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border rounded-lg p-4">
-                            <div class="flex justify-between">
-                                <div>
-                                    <h4 class="font-semibold">Artificial Intelligence Platform for Analysis</h4>
-                                    <p class="text-sm text-gray-500">EP2,345,678 • 2018-07-22</p>
-                                    <p class="text-sm text-gray-600 mt-2">An AI platform for comprehensive data analysis and prediction...</p>
-                                </div>
-                                <div class="text-center">
-                                    <p class="text-2xl font-bold text-purple-700">87%</p>
-                                    <p class="text-xs text-gray-500">Relevance</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="gradient-hero text-white py-20 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-4" data-i18n="cta.title">
-                Ready to Revolutionize Your Patent Practice?
-            </h2>
-            <p class="text-xl mb-8 text-purple-100" data-i18n="cta.subtitle">
-                Join thousands of patent professionals using LUMA IP
-            </p>
-            <div class="flex justify-center space-x-4">
-                <button onclick="showDemo()" class="px-8 py-4 bg-white text-purple-700 rounded-lg font-semibold hover:bg-gray-100 transition" data-i18n="cta.startTrial">
-                    Start Free Trial
-                </button>
-                <button onclick="showDemo()" class="px-8 py-4 bg-purple-800 text-white rounded-lg font-semibold hover:bg-purple-900 transition" data-i18n="cta.scheduleDemo">
-                    Schedule Demo
-                </button>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center mb-4">
-                        <span class="text-2xl mr-2">⚖️</span>
-                        <span class="text-xl font-bold">LUMA IP</span>
+    <footer id="contact" class="footer">
+        <div class="container footer__inner">
+            <div>
+                <div class="brand brand--footer">
+                    <div class="logo">⚖️</div>
+                    <div class="brand__text">
+                        <div class="brand__title">LUMA IP</div>
+                        <div class="brand__subtitle" data-i18n="footer.tagline">Patent agent in your browser</div>
                     </div>
-                    <p class="text-gray-400 text-sm" data-i18n="footer.tagline">
-                        Legal Utility for Machine Assisted IP Analysis
-                    </p>
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4" data-i18n="footer.product">Product</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.features">Features</a></li>
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.pricing">Pricing</a></li>
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.security">Security</a></li>
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.api">API</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4" data-i18n="footer.company">Company</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.about">About</a></li>
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.blog">Blog</a></li>
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.careers">Careers</a></li>
-                        <li><a href="#" class="hover:text-white" data-i18n="nav.contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4" data-i18n="footer.legal">Legal</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.privacy">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.terms">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.cookiePolicy">Cookie Policy</a></li>
-                        <li><a href="#" class="hover:text-white" data-i18n="footer.compliance">Compliance</a></li>
-                    </ul>
-                </div>
+                <p class="fine">© <span id="year"></span> LUMA IP Solutions. <span data-i18n="footer.confidential">Confidential & secure by design.</span></p>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-                <p data-i18n="footer.copyright">© 2024 LUMA IP. All rights reserved. Patent pending.</p>
-            </div>
+            <form class="contact">
+                <label><span data-i18n="contact.yourEmail">Your email</span> <input type="email" placeholder="you@company.com" required/></label>
+                <label><span data-i18n="contact.yourMessage">Your message</span> <textarea placeholder="Tell us about your invention..." data-i18n-placeholder="contact.messagePlaceholder"></textarea></label>
+                <button class="btn btn--primary" type="submit" data-i18n="contact.send">Send</button>
+            </form>
         </div>
     </footer>
 
-    <script>
-        // Tab switching functionality
-        function showTab(tabName) {
-            // Hide all tabs
-            document.getElementById('dashboard-tab').classList.add('hidden');
-            document.getElementById('filing-tab').classList.add('hidden');
-            document.getElementById('portfolio-tab').classList.add('hidden');
-            document.getElementById('search-tab').classList.add('hidden');
-            
-            // Show selected tab
-            document.getElementById(tabName + '-tab').classList.remove('hidden');
-            
-            // Update button styles
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-white', 'text-purple-700');
-                btn.classList.add('text-gray-600');
-            });
-            event.target.classList.add('bg-white', 'text-purple-700');
-            event.target.classList.remove('text-gray-600');
-        }
-
-        // Demo functions
-        function showDemo() {
-            alert('Demo mode: In a full implementation, this would open the application dashboard.');
-        }
-
-        function showFilingWorkflow() {
-            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
-            showTab('filing');
-        }
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-    </script>
+    <script src="assets/script-new.js"></script>
 </body>
 </html>
