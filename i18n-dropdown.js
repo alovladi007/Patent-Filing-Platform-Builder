@@ -250,7 +250,53 @@
             'footer.terms': 'Conditions d\'Utilisation',
             'footer.cookiePolicy': 'Politique de Cookies',
             'footer.compliance': 'Conformité',
-            'footer.copyright': '© 2024 LUMA IP. Tous droits réservés. Brevet en instance.'
+            'footer.copyright': '© 2024 LUMA IP. Tous droits réservés. Brevet en instance.',
+            
+            // Product Page
+            'product.hero.title': 'La Plateforme de Brevets Complète',
+            'product.hero.description': 'LUMA IP combine l\'IA de pointe avec l\'expertise juridique pour rationaliser tous les aspects du dépôt de brevets, de la rédaction initiale à la poursuite finale.',
+            'product.platform.title': 'Gestion de Brevets de Bout en Bout',
+            'product.platform.description': 'Notre plateforme gère chaque étape du cycle de vie du brevet, de la divulgation de l\'invention à la maintenance du brevet accordé.',
+            'product.platform.feature1.title': 'Rédaction Alimentée par l\'IA',
+            'product.platform.feature1.description': 'Générez des demandes de brevet complètes en quelques minutes',
+            'product.platform.feature2.title': 'Recherche Intelligente d\'Art Antérieur',
+            'product.platform.feature2.description': 'Recherche sémantique alimentée par l\'IA dans les bases de données mondiales',
+            'product.platform.feature3.title': 'Flux de Travail Automatisés',
+            'product.platform.feature3.description': 'Rationalisez le dépôt avec une automatisation intelligente',
+            'product.components.title': 'Composants Clés',
+            'product.components.ai.title': 'Moteur d\'IA',
+            'product.components.ai.description': 'Modèles de langage avancés formés sur des millions de brevets pour une génération précise de revendications',
+            'product.components.database.title': 'Base de Données de Brevets',
+            'product.components.database.description': 'Accès aux bases de données mondiales de brevets avec mises à jour en temps réel et couverture complète',
+            'product.components.compliance.title': 'Outils de Conformité',
+            'product.components.compliance.description': 'Vérifications de conformité intégrées et génération de formulaires USPTO avec validation',
+            
+            // Security Page
+            'security.hero.title': 'La Sécurité d\'Abord, Toujours',
+            'security.hero.description': 'Votre propriété intellectuelle est protégée par une sécurité de niveau entreprise, des certifications de conformité et les meilleures pratiques de l\'industrie.',
+            'security.features.title': 'Fonctionnalités de Sécurité',
+            'security.encryption.title': 'Chiffrement de Bout en Bout',
+            'security.encryption.description': 'Toutes les données sont chiffrées au repos avec AES-256 et en transit avec TLS 1.3',
+            'security.access.title': 'Contrôle d\'Accès',
+            'security.access.description': 'Contrôle d\'accès basé sur les rôles avec authentification multifacteur et support SSO',
+            'security.audit.title': 'Journalisation d\'Audit',
+            'security.audit.description': 'Piste d\'audit complète de toutes les actions avec journalisation inviolable',
+            'security.infrastructure.title': 'Infrastructure Sécurisée',
+            'security.infrastructure.description': 'Hébergé sur une infrastructure conforme SOC 2 avec SLA de disponibilité de 99,99%',
+            'security.threat.title': 'Protection contre les Menaces',
+            'security.threat.description': 'Détection des menaces en temps réel avec protection DDoS et WAF',
+            'security.backup.title': 'Sauvegarde des Données',
+            'security.backup.description': 'Sauvegardes quotidiennes automatisées avec récupération à un point dans le temps',
+            'security.compliance.title': 'Conformité et Certifications',
+            'security.soc2': 'Certifié conforme',
+            'security.iso': 'Certifié',
+            'security.gdpr': 'Conforme',
+            'security.ccpa': 'Conforme',
+            
+            // API Page
+            'api.hero.title': 'API pour Développeurs',
+            'api.hero.description': 'Intégrez les capacités d\'automatisation de brevets de LUMA IP dans vos applications avec notre API RESTful.',
+            'api.endpoints.title': 'Points de Terminaison API'
         },
         
         es: {
@@ -343,7 +389,53 @@
             'footer.terms': 'Términos de Servicio',
             'footer.cookiePolicy': 'Política de Cookies',
             'footer.compliance': 'Cumplimiento',
-            'footer.copyright': '© 2024 LUMA IP. Todos los derechos reservados. Patente pendiente.'
+            'footer.copyright': '© 2024 LUMA IP. Todos los derechos reservados. Patente pendiente.',
+            
+            // Product Page
+            'product.hero.title': 'La Plataforma Completa de Patentes',
+            'product.hero.description': 'LUMA IP combina IA de vanguardia con experiencia legal para optimizar todos los aspectos de la presentación de patentes, desde el borrador inicial hasta la prosecución final.',
+            'product.platform.title': 'Gestión de Patentes de Extremo a Extremo',
+            'product.platform.description': 'Nuestra plataforma maneja cada etapa del ciclo de vida de la patente, desde la divulgación de la invención hasta el mantenimiento de la patente otorgada.',
+            'product.platform.feature1.title': 'Redacción Impulsada por IA',
+            'product.platform.feature1.description': 'Genere solicitudes de patentes completas en minutos',
+            'product.platform.feature2.title': 'Búsqueda Inteligente de Arte Previo',
+            'product.platform.feature2.description': 'Búsqueda semántica impulsada por IA en bases de datos globales',
+            'product.platform.feature3.title': 'Flujos de Trabajo Automatizados',
+            'product.platform.feature3.description': 'Optimice la presentación con automatización inteligente',
+            'product.components.title': 'Componentes Clave',
+            'product.components.ai.title': 'Motor de IA',
+            'product.components.ai.description': 'Modelos de lenguaje avanzados entrenados en millones de patentes para generación precisa de reivindicaciones',
+            'product.components.database.title': 'Base de Datos de Patentes',
+            'product.components.database.description': 'Acceso a bases de datos de patentes globales con actualizaciones en tiempo real y cobertura integral',
+            'product.components.compliance.title': 'Herramientas de Cumplimiento',
+            'product.components.compliance.description': 'Verificaciones de cumplimiento integradas y generación de formularios USPTO con validación',
+            
+            // Security Page
+            'security.hero.title': 'Seguridad Primero, Siempre',
+            'security.hero.description': 'Su propiedad intelectual está protegida por seguridad de nivel empresarial, certificaciones de cumplimiento y mejores prácticas de la industria.',
+            'security.features.title': 'Características de Seguridad',
+            'security.encryption.title': 'Cifrado de Extremo a Extremo',
+            'security.encryption.description': 'Todos los datos están cifrados en reposo con AES-256 y en tránsito con TLS 1.3',
+            'security.access.title': 'Control de Acceso',
+            'security.access.description': 'Control de acceso basado en roles con autenticación multifactor y soporte SSO',
+            'security.audit.title': 'Registro de Auditoría',
+            'security.audit.description': 'Rastro de auditoría completo de todas las acciones con registro a prueba de manipulaciones',
+            'security.infrastructure.title': 'Infraestructura Segura',
+            'security.infrastructure.description': 'Alojado en infraestructura compatible con SOC 2 con SLA de tiempo de actividad del 99.99%',
+            'security.threat.title': 'Protección contra Amenazas',
+            'security.threat.description': 'Detección de amenazas en tiempo real con protección DDoS y WAF',
+            'security.backup.title': 'Respaldo de Datos',
+            'security.backup.description': 'Respaldos diarios automatizados con recuperación punto en el tiempo',
+            'security.compliance.title': 'Cumplimiento y Certificaciones',
+            'security.soc2': 'Certificado conforme',
+            'security.iso': 'Certificado',
+            'security.gdpr': 'Conforme',
+            'security.ccpa': 'Conforme',
+            
+            // API Page
+            'api.hero.title': 'API para Desarrolladores',
+            'api.hero.description': 'Integre las capacidades de automatización de patentes de LUMA IP en sus aplicaciones con nuestra API RESTful.',
+            'api.endpoints.title': 'Endpoints de API'
         },
         
         zh: {
@@ -436,7 +528,53 @@
             'footer.terms': '服务条款',
             'footer.cookiePolicy': 'Cookie 政策',
             'footer.compliance': '合规性',
-            'footer.copyright': '© 2024 LUMA IP. 保留所有权利。专利待审。'
+            'footer.copyright': '© 2024 LUMA IP. 保留所有权利。专利待审。',
+            
+            // Product Page
+            'product.hero.title': '完整的专利平台',
+            'product.hero.description': 'LUMA IP 将尖端人工智能与法律专业知识相结合，简化专利申请的各个方面，从初始起草到最终审查。',
+            'product.platform.title': '端到端专利管理',
+            'product.platform.description': '我们的平台处理专利生命周期的每个阶段，从发明披露到授权专利维护。',
+            'product.platform.feature1.title': 'AI驱动的起草',
+            'product.platform.feature1.description': '在几分钟内生成完整的专利申请',
+            'product.platform.feature2.title': '智能现有技术搜索',
+            'product.platform.feature2.description': '在全球数据库中进行AI驱动的语义搜索',
+            'product.platform.feature3.title': '自动化工作流程',
+            'product.platform.feature3.description': '通过智能自动化简化申请流程',
+            'product.components.title': '关键组件',
+            'product.components.ai.title': 'AI引擎',
+            'product.components.ai.description': '在数百万专利上训练的高级语言模型，用于准确生成权利要求',
+            'product.components.database.title': '专利数据库',
+            'product.components.database.description': '访问全球专利数据库，实时更新和全面覆盖',
+            'product.components.compliance.title': '合规工具',
+            'product.components.compliance.description': '内置合规检查和USPTO表格生成与验证',
+            
+            // Security Page
+            'security.hero.title': '安全至上，始终如一',
+            'security.hero.description': '您的知识产权受到企业级安全、合规认证和行业最佳实践的保护。',
+            'security.features.title': '安全功能',
+            'security.encryption.title': '端到端加密',
+            'security.encryption.description': '所有数据在静态时使用AES-256加密，在传输时使用TLS 1.3',
+            'security.access.title': '访问控制',
+            'security.access.description': '基于角色的访问控制，支持多因素身份验证和SSO',
+            'security.audit.title': '审计日志',
+            'security.audit.description': '所有操作的完整审计跟踪，具有防篡改日志记录',
+            'security.infrastructure.title': '安全基础设施',
+            'security.infrastructure.description': '托管在符合SOC 2的基础设施上，正常运行时间SLA为99.99%',
+            'security.threat.title': '威胁防护',
+            'security.threat.description': '实时威胁检测，具有DDoS保护和WAF',
+            'security.backup.title': '数据备份',
+            'security.backup.description': '自动每日备份，具有时间点恢复',
+            'security.compliance.title': '合规与认证',
+            'security.soc2': '认证合规',
+            'security.iso': '已认证',
+            'security.gdpr': '合规',
+            'security.ccpa': '合规',
+            
+            // API Page
+            'api.hero.title': '开发者API',
+            'api.hero.description': '使用我们的RESTful API将LUMA IP的专利自动化功能集成到您的应用程序中。',
+            'api.endpoints.title': 'API端点'
         }
     };
     
